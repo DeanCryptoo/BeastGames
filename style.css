@@ -18,7 +18,7 @@ a {
 }
 
 .container {
-    width: 90%;
+    width: 100%; /* Changed to full width to avoid overflow */
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -28,12 +28,13 @@ a {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 5px 5%; /* Reduced padding to make the navbar smaller */
+    padding: 10px 5%; /* Reduced padding to make the navbar smaller */
     background: rgba(0, 0, 0, 0.8); /* Darker background */
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
+    flex-direction: row; /* Default: horizontal layout */
 }
 
 .navbar .logo img {
@@ -135,6 +136,9 @@ a {
     display: block;
     text-align: center;
     margin-bottom: 70px; /* Further space from the content */
+    word-wrap: break-word; /* Ensures long contract address wraps properly */
+    max-width: 100%; /* Ensures the text does not overflow */
+    padding: 0 10px; /* Add padding to prevent text from touching the edges */
 }
 
 /* Trailer Section */
@@ -194,4 +198,74 @@ footer a {
 
 footer a:hover {
     color: #0088cc;
+}
+
+/* Media Queries for Mobile Devices */
+@media (max-width: 768px) {
+    /* Navbar Styles */
+    .navbar {
+        flex-direction: column; /* Stack the navbar content vertically on mobile */
+        padding: 10px 5%;
+        height: auto; /* Allow the navbar to expand to fit the content */
+    }
+
+    .navbar .logo img {
+        width: 80px; /* Smaller logo on mobile */
+    }
+
+    .navbar .nav-links {
+        flex-direction: row; /* Ensure links are horizontal */
+        justify-content: center; /* Center the navbar links */
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .navbar .nav-links li {
+        margin: 0 10px; /* Adjusted the spacing between links */
+    }
+
+    .navbar .nav-links a {
+        font-size: 0.9rem; /* Smaller text size */
+        font-weight: 600;
+    }
+
+    /* Hero Section */
+    #hero .title {
+        font-size: 3rem; /* Smaller text for hero title */
+    }
+
+    #hero .subtitle {
+        font-size: 1.4rem; /* Smaller subtitle text */
+    }
+
+    .cta-btn {
+        padding: 12px 30px; /* Adjusted padding for mobile */
+        font-size: 1.1rem;
+    }
+}
+
+/* Additional Mobile Adjustments for Very Small Screens */
+@media (max-width: 480px) {
+    /* Navbar Adjustments */
+    .navbar .nav-links a {
+        font-size: 0.8rem; /* Further reduce text size on very small screens */
+    }
+
+    .navbar .nav-links li {
+        margin: 0 8px; /* Tighter spacing between links */
+    }
+
+    /* Hero Section */
+    #hero .title {
+        font-size: 2.5rem; /* Smaller text for hero title on very small screens */
+    }
+
+    #hero .subtitle {
+        font-size: 1.2rem; /* Smaller subtitle text on very small screens */
+    }
+
+    .cta-btn {
+        padding: 10px 25px; /* Reduced padding on mobile */
+        font-size: 1rem;
+    }
 }
