@@ -18,7 +18,7 @@ a {
 }
 
 .container {
-    width: 100%; /* Changed to full width to avoid overflow */
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -28,17 +28,16 @@ a {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 0px 5%; /* Reduced padding to make the navbar smaller */
-    background: rgba(0, 0, 0, 0.8); /* Darker background */
+    padding: 0px 5%;
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
-    flex-direction: row; /* Default: horizontal layout */
 }
 
 .navbar .logo img {
-    width: 100px; /* Smaller logo size */
+    width: 100px;
 }
 
 .navbar .nav-links {
@@ -58,21 +57,21 @@ a {
 }
 
 .navbar .nav-links a:hover {
-    color: #00B4FF; /* Change to a blue shade */
+    color: #00B4FF;
 }
 
 /* Countdown Timer Section */
 #countdown {
-    position: absolute; /* Absolute positioning to overlay on hero section */
-    top: 15%; /* Adjust this value to position the timer lower */
+    position: absolute;
+    top: 15%;
     left: 50%;
-    transform: translateX(-50%); /* Centers the countdown horizontally */
-    background: rgba(0, 0, 0, 0.8); /* Darker overlay */
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
     padding: 20px 0;
     text-align: center;
     color: #fff;
-    width: 100%; /* Ensures full width for the countdown */
-    z-index: 99; /* Ensure it's above other elements */
+    width: 100%;
+    z-index: 99;
 }
 
 .countdown-text {
@@ -86,7 +85,6 @@ a {
     font-weight: 700;
     color: #00B4FF;
 }
-
 
 /* Hero Section */
 #hero {
@@ -103,7 +101,7 @@ a {
 }
 
 #hero .overlay {
-    background: rgba(0, 0, 0, 0.8); /* Darker overlay */
+    background: rgba(0, 0, 0, 0.8);
     padding: 50px;
     border-radius: 10px;
 }
@@ -158,14 +156,14 @@ a {
 .contract-address {
     font-weight: bold;
     color: #00B4FF;
-    margin-top: 70px; /* Increased space between CA and navbar */
+    margin-top: 70px;
     font-size: 1.2rem;
     display: block;
     text-align: center;
-    margin-bottom: 70px; /* Further space from the content */
-    word-wrap: break-word; /* Ensures long contract address wraps properly */
-    max-width: 100%; /* Ensures the text does not overflow */
-    padding: 0 10px; /* Add padding to prevent text from touching the edges */
+    margin-bottom: 70px;
+    word-wrap: break-word;
+    max-width: 100%;
+    padding: 0 10px;
 }
 
 /* Trailer Section */
@@ -183,8 +181,37 @@ a {
 
 .video-container iframe {
     width: 100%;
-    height: 800px; /* Increased video size */
+    height: 800px;
     border-radius: 10px;
+}
+
+/* Livestream Section */
+#livestream {
+    padding: 80px 0;
+    background-color: #111;
+    text-align: center;
+}
+
+#livestream .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.livestream-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #222;
+    border-radius: 10px;
+    padding: 30px;
+    color: #ccc;
+}
+
+.livestream-placeholder {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #00B4FF;
 }
 
 /* Social Links Section */
@@ -229,76 +256,67 @@ footer a:hover {
 
 /* Media Queries for Mobile Devices */
 @media (max-width: 768px) {
-    /* Navbar Styles */
     .navbar {
-        flex-direction: column; /* Stack the navbar content vertically on mobile */
+        flex-direction: column;
         padding: 10px 5%;
-        height: auto; /* Allow the navbar to expand to fit the content */
     }
 
     .navbar .logo img {
-        width: 80px; /* Smaller logo on mobile */
+        width: 80px;
     }
 
     .navbar .nav-links {
-        flex-direction: row; /* Ensure links are horizontal */
-        justify-content: center; /* Center the navbar links */
+        justify-content: center;
         width: 100%;
         margin-top: 10px;
     }
 
     #countdown {
-        top: 16%; /* Move the countdown lower on mobile */
-        padding: 5px 0; /* Reduce padding for mobile */
-        margin-bottom: 0px; /* Reduce bottom margin for mobile */
-	height: 10%;
+        top: 16%;
+        padding: 5px 0;
     }
+
     .navbar .nav-links li {
-        margin: 0 10px; /* Adjusted the spacing between links */
+        margin: 0 10px;
     }
 
     .navbar .nav-links a {
-        font-size: 0.9rem; /* Smaller text size */
-        font-weight: 600;
+        font-size: 0.9rem;
     }
 
-    /* Hero Section */
     #hero .title {
-        font-size: 3rem; /* Smaller text for hero title */
+        font-size: 3rem;
     }
 
     #hero .subtitle {
-        font-size: 1.4rem; /* Smaller subtitle text */
+        font-size: 1.4rem;
     }
 
     .cta-btn {
-        padding: 12px 30px; /* Adjusted padding for mobile */
+        padding: 12px 30px;
         font-size: 1.1rem;
     }
 }
 
-/* Additional Mobile Adjustments for Very Small Screens */
 @media (max-width: 480px) {
-    /* Navbar Adjustments */
     .navbar .nav-links a {
-        font-size: 0.8rem; /* Further reduce text size on very small screens */
+        font-size: 0.8rem;
     }
 
     .navbar .nav-links li {
-        margin: 0 8px; /* Tighter spacing between links */
+        margin: 0 8px;
     }
 
-    /* Hero Section */
     #hero .title {
-        font-size: 2.5rem; /* Smaller text for hero title on very small screens */
+        font-size: 2.5rem;
     }
 
     #hero .subtitle {
-        font-size: 1.2rem; /* Smaller subtitle text on very small screens */
+        font-size: 1.2rem;
     }
 
     .cta-btn {
-        padding: 10px 25px; /* Reduced padding on mobile */
+        padding: 10px 25px;
         font-size: 1rem;
     }
 }
