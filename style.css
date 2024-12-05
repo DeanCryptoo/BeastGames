@@ -28,7 +28,7 @@ a {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 10px 5%; /* Reduced padding to make the navbar smaller */
+    padding: 0px 5%; /* Reduced padding to make the navbar smaller */
     background: rgba(0, 0, 0, 0.8); /* Darker background */
     display: flex;
     justify-content: space-between;
