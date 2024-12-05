@@ -61,6 +61,33 @@ a {
     color: #00B4FF; /* Change to a blue shade */
 }
 
+/* Countdown Timer Section */
+#countdown {
+    position: absolute; /* Absolute positioning to overlay on hero section */
+    top: 15%; /* Adjust this value to position the timer lower */
+    left: 50%;
+    transform: translateX(-50%); /* Centers the countdown horizontally */
+    background: rgba(0, 0, 0, 0.8); /* Darker overlay */
+    padding: 20px 0;
+    text-align: center;
+    color: #fff;
+    width: 100%; /* Ensures full width for the countdown */
+    z-index: 99; /* Ensure it's above other elements */
+}
+
+.countdown-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.timer {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #00B4FF;
+}
+
+
 /* Hero Section */
 #hero {
     background-image: url('hero-background.jpg');
@@ -220,6 +247,12 @@ footer a:hover {
         margin-top: 10px;
     }
 
+    #countdown {
+        top: 16%; /* Move the countdown lower on mobile */
+        padding: 5px 0; /* Reduce padding for mobile */
+        margin-bottom: 0px; /* Reduce bottom margin for mobile */
+	height: 10%;
+    }
     .navbar .nav-links li {
         margin: 0 10px; /* Adjusted the spacing between links */
     }
