@@ -37,7 +37,7 @@ a {
 }
 
 .navbar .logo img {
-    width: 100px;
+    width: 75px;
 }
 
 .navbar .nav-links {
@@ -312,7 +312,9 @@ footer a:hover {
 
     #countdown {
         padding: 5px 0;
+		    top: 175%;
     }
+
 
     .navbar .nav-links li {
         margin: 0 10px;
