@@ -63,7 +63,7 @@ a {
 /* Countdown Timer Section */
 #countdown {
     position: absolute;
-    top: 75%;
+    top: 145%;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(0, 0, 0, 0);
@@ -101,7 +101,7 @@ a {
 }
 
 #hero .overlay {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0);
     padding: 50px;
     border-radius: 10px;
 }
