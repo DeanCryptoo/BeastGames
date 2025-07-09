@@ -3,128 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeastGames Crypto</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+    <title>BeastGames Crypto - Season 2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicon.ico">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <header>
-        <nav class="navbar">
+    <header class="header">
+        <nav class="navbar container">
             <div class="logo">
-                <img src="logo.png" alt="BeastGames Logo">
+                <a href="#"><img src="logo.png" alt="BeastGames Logo"></a>
             </div>
             <ul class="nav-links">
-                <li><a href="https://t.me/+cJw4yIac1W40ZmU0" target="_blank">Telegram</a></li>
-                <li><a href="https://x.com/mrbeast/status/1861121958122770860" target="_blank">X</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
                 <li><a href="#trailer">Trailer</a></li>
-				<li><a href="#beast-game">Games</a></li>
-                <li><a href="#socials">Socials</a></li>
+                <li><a href="#beast-game">Games</a></li>
+                <li><a href="#community">Community</a></li>
             </ul>
+            <button class="hamburger" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
         </nav>
     </header>
-    <!-- Countdown Timer Section -->
-    <section id="countdown">
-        <div class="container">
-            <p class="countdown-text"><b>Time remaining until GameShow</b></p>
-            <div id="timer" class="timer"><b></b></div>
-        </div>
-    </section>
-    <!-- Parallax Hero Section -->
-    <section id="hero">
-        <div class="overlay">
 
+    <section id="hero" class="hero-section">
+        <div class="hero-content container">
+            <h1 class="hero-title">BeastGames Memecoin <span class="highlight">Season 2</span></h1>
+            <p class="hero-subtitle">The ultimate fusion of gaming, community, and crypto. Get ready for a new era of decentralized entertainment!</p>
+            <a href="https://dexscreener.com/solana/YOUR_NEW_SOLANA_CONTRACT_ADDRESS" target="_blank" class="cta-button primary-button">Buy $BEAST</a>
+            <p class="ca-text">Contract Address: <span class="contract-address">HpaPfnQN3ATmMer8mN8i39zVwv618Hs4azXy9t48pump</span></p>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about">
+    <section id="countdown" class="countdown-section">
         <div class="container">
-            <h2 class="section-title">What is BeastGames?</h2>
-            <p class="description">BeastGames brings the world together with the opportunity to earn, play, and grow in the crypto ecosystem. Join the movement where everyone can win, the power of community is stronger than ever!</p>
-            <a href="https://etherscan.io/address/HpaPfnQN3ATmMer8mN8i39zVwv618Hs4azXy9t48pump" class="contract-address" target="_blank">
-                CA: HpaPfnQN3ATmMer8mN8i39zVwv618Hs4azXy9t48pump
-            </a>
+            <p class="countdown-label">Time until BeastGames Season 2 Kicks Off!</p>
+            <div id="timer" class="countdown-timer"></div>
         </div>
     </section>
 
-    <!-- Trailer Section -->
-    <section id="trailer">
+    <section id="about" class="about-section">
         <div class="container">
-            <h2 class="section-title">Watch the Trailer</h2>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/2lyCZnx71ps" frameborder="0" allowfullscreen></iframe>
+            <h2 class="section-title">What is <span class="highlight">BeastGames Memecoin</span>?</h2>
+            <div class="about-content">
+                <p>We're back! BeastGames Memecoin shook the crypto world in its last season, soaring to a <b>$5M market cap</b> and cultivating a massive, passionate following. We proved the power of community, gaming, and memecoins combined.</p>
+                <p>Now, with Season 2, we're ready to do it again. Get prepared for even more thrilling challenges, unparalleled community engagement, and a token that continues to redefine decentralized entertainment. This isn't just a coin; it's a movement where every holder is part of the game.</p>
             </div>
         </div>
     </section>
-	<!-- Beast Game Section -->
-	<section id="beast-game">
-		<div class="container">
-			<h2 class="section-title">Play the Beast Game</h2>
-			<p class="description">
-				When the Beast Games release, you'll be able to bid Solana on a player and win if your chosen player triumphs!
-			</p>
-			<div class="game-container">
-				<p class="game-placeholder">Game coming soon!</p>
-			</div>
-		</div>
-	</section>
-    <!-- Livestream Section -->
-    <section id="livestream">
+
+    <section id="features" class="features-section">
         <div class="container">
-            <h2 class="section-title">Livestream</h2>
-            <div class="livestream-container">
-                <div class="livestream-placeholder">
-                    <p>Coming Soon! Stay tuned for the live broadcast.</p>
+            <h2 class="section-title">Why Join <span class="highlight">BeastGames Memecoin</span>?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fas fa-users feature-icon"></i>
+                    <h3>Vibrant Community</h3>
+                    <p>Join a passionate community of gamers and crypto enthusiasts on Telegram and X (formerly Twitter).</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-chart-line feature-icon"></i>
+                    <h3>Growth Potential</h3>
+                    <p>Be part of a project with strong fundamentals, active development, and a focus on building.</p>
                 </div>
             </div>
         </div>
     </section>
-	
 
-
-
-    <!-- Social Links Section -->
-    <section id="socials">
+    <section id="roadmap" class="roadmap-section">
         <div class="container">
-            <a href="https://x.com/mrbeast/status/1861121958122770860" class="social-link" target="_blank">X</a>
-            <a href="https://t.me/+cJw4yIac1W40ZmU0" class="social-link" target="_blank">Telegram</a>
-            <a href="https://dexscreener.com/solana/68gw6v5dtfwipeunzbatgkct3mzcmtfslkixkxtagr8d" class="social-link" target="_blank">Track Coin</a>
+            <h2 class="section-title">Our <span class="highlight">Roadmap</span> for Season 2</h2>
+            <div class="roadmap-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Phase 1: Launch & Community Build</h3>
+                        <ul>
+                            <li>Website Relaunch & Smart Contract Deployment</li>
+                            <li>Initial Marketing Campaigns & Influencer Partnerships</li>
+                            <li>Community AMA Sessions & Contests</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Phase 2: Game Integration & Partnerships</h3>
+                        <ul>
+                            <li>Integration of BeastGames Season 2 Prediction Platform</li>
+                            <li>Partnerships with Gaming Guilds & Crypto Platforms</li>
+                            <li>Enhanced Staking & Farming Opportunities (Future Consideration)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Phase 3: Ecosystem Expansion & Global Reach</h3>
+                        <ul>
+                            <li>Development of Mini-Games & NFTs (Future Consideration)</li>
+                            <li>Cross-Chain Bridging & CEX Listings (Future Consideration)</li>
+                            <li>Global Marketing & Localization Efforts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
+    <section id="trailer" class="trailer-section">
         <div class="container">
-            <p>&copy; 2024 BeastGames. All Rights Reserved.</p>
-            <p><a href="/privacy-policy" target="_blank">Privacy Policy</a> | <a href="/terms" target="_blank">Terms of Service</a></p>
+            <h2 class="section-title">Watch the <span class="highlight">BeastGames Trailer</span></h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/YOUR_YOUTUBE_TRAILER_ID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="livestream" class="livestream-section">
+        <div class="container">
+            <h2 class="section-title">Live <span class="highlight">Broadcast</span></h2>
+            <div class="livestream-container">
+                <div class="livestream-placeholder">
+                    <p>Livestream goes live when BeastGames Season 2 begins!</p>
+                    <p>Don't miss a single moment of the action.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="community" class="community-section">
+        <div class="container">
+            <h2 class="section-title">Join Our <span class="highlight">Community</span></h2>
+            <div class="social-links">
+                <a href="https://t.me/+cJw4yIac1W40ZmU0" target="_blank" class="social-link"><i class="fab fa-telegram-plane"></i> Telegram</a>
+                <a href="https://x.com/MrBeast/status/1922068781058109819" target="_blank" class="social-link"><i class="fab fa-twitter"></i> X (Twitter)</a>
+                <a href="https://dexscreener.com/solana/68gw6v5dtfwipeunzbatgkct3mzcmtfslkixkxtagr8d" target="_blank" class="social-link"><i class="fas fa-chart-area"></i> Dexscreener</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 BeastGames Crypto. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+                <a href="/terms" target="_blank">Terms of Service</a>
+            </div>
         </div>
     </footer>
-    <script>
-        // Set the target date for the countdown
-        var targetDate = new Date("December 19, 2024 00:00:00").getTime();
 
-        // Update the countdown every second
-        var countdown = setInterval(function() {
-            var now = new Date().getTime();
-            var timeLeft = targetDate - now;
-
-            // Calculate days, hours, minutes, and seconds
-            var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-            // Display the result in the element with id="timer"
-            document.getElementById("timer").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-
-            // If the countdown finishes
-            if (timeLeft < 0) {
-                clearInterval(countdown);
-                document.getElementById("timer").innerHTML = "EXPIRED";
-            }
-        }, 1000);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

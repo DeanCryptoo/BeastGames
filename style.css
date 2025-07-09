@@ -1,4 +1,15 @@
 /* Global Styles */
+:root {
+    --primary-color: #00B4FF; /* A vibrant blue */
+    --secondary-color: #FFD700; /* A gold/yellow for highlights */
+    --dark-bg: #111;
+    --medium-bg: #222;
+    --light-text: #E0E0E0;
+    --dark-text: #FFF;
+    --header-bg: rgba(0, 0, 0, 0.9);
+    --button-hover: #0088cc;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -7,356 +18,677 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    color: #fff;
-    background-color: #111;
+    color: var(--light-text);
+    background-color: var(--dark-bg);
     overflow-x: hidden;
+    line-height: 1.6;
 }
 
 a {
     text-decoration: none;
-    color: inherit;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--button-hover);
 }
 
 .container {
-    width: 100%;
+    width: 90%;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 20px 0;
 }
 
-/* Navbar Styles */
-.navbar {
+.section-title {
+    font-size: 3rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--dark-text);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-color);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+.highlight {
+    color: var(--primary-color);
+}
+
+/* Header & Navbar */
+.header {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 0px 5%;
-    background: rgba(0, 0, 0, 0.8);
+    /* Modern navbar background with blur effect */
+    background: rgba(0, 0, 0, 0.7); /* Fallback for browsers not supporting backdrop-filter */
+    backdrop-filter: blur(10px); /* Modern blur effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    padding: 15px 0;
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.6);
+}
+
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 100;
+
 }
 
 .navbar .logo img {
-    width: 75px;
+    width: 60px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.navbar .logo img:hover {
+    transform: scale(1.05);
 }
 
 .navbar .nav-links {
     display: flex;
     list-style: none;
-}
-
-.navbar .nav-links li {
-    margin: 0 15px;
+    gap: 30px; /* Modern spacing for navigation items */
 }
 
 .navbar .nav-links a {
-    color: #fff;
+    color: var(--dark-text);
     font-weight: 700;
     font-size: 1.1rem;
-    transition: color 0.3s;
+    position: relative;
+    padding: 10px 0; /* Add padding for better click area */
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar .nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background-color: var(--primary-color);
+    left: 50%; /* Start from center */
+    transform: translateX(-50%); /* Center the underline */
+    bottom: 0;
+    transition: width 0.3s ease-in-out;
 }
 
 .navbar .nav-links a:hover {
-    color: #00B4FF;
+    color: var(--primary-color); /* Highlight text on hover */
+    transform: translateY(-2px); /* Subtle lift effect */
 }
 
-/* Countdown Timer Section */
-#countdown {
-    position: absolute;
-    top: 145%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0);
-    padding: 20px 0;
-    text-align: center;
-    color: #fff;
+.navbar .nav-links a:hover::after {
     width: 100%;
-    z-index: 99;
 }
 
-.countdown-text {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 10px;
+/* Active link styling (for future JS implementation or manual highlighting) */
+.navbar .nav-links a.active {
+    color: var(--primary-color);
 }
 
-.timer {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #00B4FF;
+.navbar .nav-links a.active::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none; /* Hidden by default for desktop */
+    background: none;
+    border: none;
+    color: var(--dark-text);
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 1001; /* Ensure it's above everything */
 }
 
 /* Hero Section */
-#hero {
-    background-image: url('hero-background.jpg');
-    background-position: center;
-    background-size: cover;
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('hero-background.jpg') no-repeat center center/cover;
     height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     text-align: center;
     position: relative;
-    padding: 20px;
+    color: var(--dark-text);
+    padding-top: 80px; /* To account for fixed header */
 }
 
-#hero .overlay {
-    background: rgba(0, 0, 0, 0);
-    padding: 50px;
-    border-radius: 10px;
+.hero-content {
+    max-width: 900px;
+    animation: fadeInScale 1.5s ease-out forwards; /* Animation for hero content */
+    opacity: 0;
+    transform: scale(0.9);
 }
 
-#hero .title {
-    font-size: 4rem;
-    font-weight: 700;
+@keyframes fadeInScale {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.hero-title {
+    font-size: 4.5rem;
+    font-weight: 900;
     margin-bottom: 20px;
-    color: #00B4FF;
+    line-height: 1.1;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
 
-#hero .subtitle {
-    font-size: 1.6rem;
-    margin-bottom: 30px;
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
     font-weight: 400;
+    color: var(--light-text);
 }
 
-.cta-btn {
-    padding: 15px 35px;
-    background-color: #00B4FF;
-    color: white;
-    border-radius: 30px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    transition: background-color 0.3s;
-}
-
-.cta-btn:hover {
-    background-color: #0088cc;
-}
-
-/* About Section */
-#about {
-    padding: 80px 0;
-    background-color: #222;
-    text-align: center;
-}
-
-#about .section-title {
-    font-size: 2.5rem;
+.cta-button {
+    display: inline-block;
+    padding: 18px 40px;
+    background-color: var(--primary-color);
+    color: var(--dark-text);
+    border-radius: 50px;
+    font-size: 1.3rem;
     font-weight: 700;
-    margin-bottom: 30px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 180, 255, 0.3);
+    margin-top: 20px;
 }
 
-.description {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #ccc;
+.cta-button:hover {
+    background-color: var(--button-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 180, 255, 0.5);
 }
 
-/* Contract Address Styling */
+.ca-text {
+    margin-top: 30px;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
 .contract-address {
     font-weight: bold;
-    color: #00B4FF;
-    margin-top: 70px;
-    font-size: 1.2rem;
-    display: block;
+    color: var(--secondary-color);
+    word-break: break-all;
+}
+
+/* Countdown Section */
+.countdown-section {
+    background-color: var(--medium-bg);
+    padding: 40px 0;
     text-align: center;
-    margin-bottom: 70px;
-    word-wrap: break-word;
-    max-width: 100%;
-    padding: 0 10px;
+    color: var(--dark-text);
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.countdown-label {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.countdown-timer {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--primary-color);
+    letter-spacing: 2px;
+}
+
+.countdown-timer small {
+    font-size: 0.5em; /* Smaller label for 'Days', 'Hours' etc. */
+    font-weight: 400;
+    display: inline-block; /* Keep them together */
+    margin: 0 5px;
+    color: var(--light-text);
+}
+
+
+/* About Section */
+.about-section {
+    padding: 100px 0;
+    background-color: var(--dark-bg);
+    text-align: center;
+}
+
+.about-content {
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--light-text);
+}
+
+.about-content p {
+    margin-bottom: 20px;
+}
+
+/* Key Features Section */
+.features-section {
+    padding: 100px 0;
+    background-color: var(--medium-bg);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Adjusted for 2 items */
+    gap: 40px;
+    text-align: center;
+    justify-content: center; /* Center items if less than grid fills row */
+}
+
+.feature-item {
+    background-color: var(--dark-bg);
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0, 180, 255, 0.2);
+}
+
+.feature-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 180, 255, 0.3);
+}
+
+.feature-icon {
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+}
+
+.feature-item h3 {
+    font-size: 1.8rem;
+    color: var(--dark-text);
+    margin-bottom: 15px;
+}
+
+.feature-item p {
+    font-size: 1.1rem;
+    color: var(--light-text);
+}
+
+/* Roadmap Section */
+.roadmap-section {
+    padding: 100px 0;
+    background-color: var(--dark-bg);
+}
+
+.roadmap-timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding-left: 50px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 60px;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -60px;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+    border: 4px solid var(--dark-bg);
+    box-shadow: 0 0 0 6px var(--primary-color);
+}
+
+.timeline-content {
+    background-color: var(--medium-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.timeline-content h3 {
+    font-size: 2rem;
+    color: var(--dark-text);
+    margin-bottom: 15px;
+}
+
+.timeline-content ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.timeline-content ul li {
+    font-size: 1.1rem;
+    color: var(--light-text);
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.timeline-content ul li::before {
+    content: '\2022'; /* Bullet point */
+    color: var(--primary-color);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
 }
 
 /* Trailer Section */
-#trailer {
-    padding: 80px 0;
-    background-color: #111;
+.trailer-section, .beast-game-section, .livestream-section {
+    padding: 100px 0;
+    background-color: var(--medium-bg);
     text-align: center;
 }
 
-#trailer .section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 30px;
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 960px; /* Max width for videos */
+    margin: 0 auto;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 800px;
-    border-radius: 10px;
+    height: 100%;
+    border: none;
 }
 
-/* Beast Game Section */
-#beast-game {
-    padding: 80px 0;
-    background-color: #111;
-    text-align: center;
-}
-
-#beast-game .section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 30px;
-}
-
-.game-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #222;
-    border-radius: 10px;
-    padding: 30px;
-    color: #ccc;
-    min-height: 400px; /* Adjust height as needed */
-}
-
-.game-placeholder {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #00B4FF;
-}
-#beast-game .description {
+/* Beast Game & Livestream Placeholders */
+.beast-game-section .description {
     font-size: 1.2rem;
     line-height: 1.6;
-    color: #ccc;
-    margin-bottom: 30px;
+    color: var(--light-text);
+    margin-bottom: 40px;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
 }
 
-/* Livestream Section */
-#livestream {
-    padding: 80px 0;
-    background-color: #111;
-    text-align: center;
-}
-
-#livestream .section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 30px;
-}
-
-.livestream-container {
+.game-container, .livestream-container {
+    background: linear-gradient(45deg, #1A1A1A, #333333);
+    border: 2px dashed var(--primary-color);
+    border-radius: 15px;
+    padding: 50px;
+    min-height: 300px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #222;
-    border-radius: 10px;
-    padding: 30px;
-    color: #ccc;
-}
-
-.livestream-placeholder {
+    text-align: center;
+    color: var(--light-text);
     font-size: 1.5rem;
     font-weight: 600;
-    color: #00B4FF;
+    box-shadow: inset 0 0 15px rgba(0, 180, 255, 0.2);
 }
 
-/* Social Links Section */
-#socials {
-    background-color: #222;
-    padding: 50px 0;
+.game-info {
+    font-size: 1rem;
+    margin-top: 15px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Community & Social Links Section */
+.community-section {
+    padding: 80px 0;
+    background-color: var(--dark-bg);
     text-align: center;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
 }
 
 .social-link {
-    display: inline-block;
-    margin: 0 20px;
-    padding: 15px 25px;
-    background-color: #1da1f2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 30px;
+    background-color: var(--primary-color);
     border-radius: 50px;
-    font-weight: 600;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--dark-text);
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .social-link:hover {
-    transform: scale(1.1);
-    background-color: #007bb5;
+    transform: translateY(-5px) scale(1.05);
+    background-color: var(--button-hover);
+    box-shadow: 0 10px 20px rgba(0, 180, 255, 0.4);
+}
+
+.social-link i {
+    font-size: 1.5rem;
 }
 
 /* Footer */
-footer {
-    background-color: #222;
-    padding: 40px 0;
+.footer {
+    background-color: var(--header-bg);
+    padding: 30px 0;
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    color: var(--light-text);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-footer a {
-    color: #00B4FF;
-    font-weight: 600;
-    transition: color 0.3s ease;
+.footer-links {
+    margin-top: 10px;
 }
 
-footer a:hover {
-    color: #0088cc;
+.footer-links a {
+    color: var(--primary-color);
+    margin: 0 15px;
 }
 
-/* Media Queries for Mobile Devices */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        padding: 10px 5%;
-    }
+.footer-links a:hover {
+    color: var(--button-hover);
+}
 
-    .navbar .logo img {
-        width: 80px;
-    }
-
+/* Responsive Design */
+@media (max-width: 992px) {
     .navbar .nav-links {
-        justify-content: center;
+        display: none; /* Hidden by default for mobile */
+        flex-direction: column;
         width: 100%;
-        margin-top: 10px;
+        position: absolute;
+        top: 80px; /* Below the header */
+        left: 0;
+        background: rgba(0, 0, 0, 0.95); /* Slightly darker for mobile menu */
+        padding: 20px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+        z-index: 999; /* Ensure it's above other content */
     }
 
-    #countdown {
-        padding: 5px 0;
-		    top: 175%;
+    .navbar .nav-links.active {
+        display: flex; /* Show nav links when active */
     }
-
 
     .navbar .nav-links li {
-        margin: 0 10px;
+        margin: 10px 0;
+        text-align: center;
     }
 
     .navbar .nav-links a {
-        font-size: 0.9rem;
+        padding: 15px 0; /* Larger clickable area on mobile */
+        width: 100%;
+        display: block; /* Make link take full width */
     }
 
-    #hero .title {
+    .navbar .nav-links a::after {
+        height: 2px; /* Thinner underline on mobile */
+    }
+
+    .hamburger {
+        display: block; /* Show hamburger icon */
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem;
+    }
+
+    .countdown-timer {
+        font-size: 2.8rem;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .feature-item {
+        padding: 30px 20px;
+    }
+
+    .feature-icon {
         font-size: 3rem;
     }
 
-    #hero .subtitle {
+    .feature-item h3 {
+        font-size: 1.6rem;
+    }
+
+    .roadmap-timeline {
+        padding-left: 20px;
+        margin-right: 20px; /* Adjust for better spacing on smaller screens */
+    }
+
+    .timeline-dot {
+        left: -10px; /* Adjust dot position */
+        width: 16px;
+        height: 16px;
+        border-width: 3px;
+    }
+
+    .timeline-content {
+        padding: 20px;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.6rem;
+    }
+
+    .video-container {
+        max-width: 90%; /* Constrain video on smaller screens */
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .cta-button {
+        padding: 15px 30px;
+        font-size: 1.1rem;
+    }
+
+    .countdown-timer {
+        font-size: 2rem;
+    }
+
+    .countdown-label {
         font-size: 1.4rem;
     }
 
-    .cta-btn {
-        padding: 12px 30px;
-        font-size: 1.1rem;
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+
+    .about-content, .beast-game-section .description {
+        font-size: 1rem;
+    }
+
+    .feature-item {
+        padding: 25px 15px;
+    }
+
+    .feature-icon {
+        font-size: 2.5rem;
+    }
+
+    .feature-item h3 {
+        font-size: 1.4rem;
+    }
+
+    .social-link {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    .social-link i {
+        font-size: 1.2rem;
+    }
+
+    .game-container, .livestream-container {
+        padding: 30px;
+        font-size: 1.2rem;
     }
 }
 
 @media (max-width: 480px) {
-    .navbar .nav-links a {
-        font-size: 0.8rem;
+    .navbar .logo img {
+        width: 50px;
     }
 
-    .navbar .nav-links li {
-        margin: 0 8px;
+    .hero-title {
+        font-size: 2.2rem;
     }
 
-    #hero .title {
-        font-size: 2.5rem;
-    }
-
-    #hero .subtitle {
-        font-size: 1.2rem;
-    }
-
-    .cta-btn {
-        padding: 10px 25px;
+    .hero-subtitle {
         font-size: 1rem;
     }
-}
+
+    .countdown-timer {
+        font-size: 1.5rem;
+    }
+    .countdown-timer small {
+        font-size: 0.7em; /* Adjust small labels for very small screens */
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .roadmap-timeline {
+        padding-left: 10px;
+    }
+
+    .timeline-dot {
+        left: -8px;
+    }
+    .features-grid {
+        grid-template-columns: 1fr; /* Stack features vertically on very small screens */
+    }
+}	
