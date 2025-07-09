@@ -69,11 +69,10 @@ a:hover {
     position: fixed;
     top: 0;
     width: 100%;
-    /* Modern navbar background with blur effect */
-    background: rgba(0, 0, 0, 0.7); /* Fallback for browsers not supporting backdrop-filter */
-    backdrop-filter: blur(10px); /* Modern blur effect */
-    -webkit-backdrop-filter: blur(10px); /* Safari support */
-    padding: 15px 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 8px 0;
     z-index: 1000;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.6);
 }
@@ -82,12 +81,13 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
 }
 
 .navbar .logo img {
-    width: 60px;
-    height: auto;
+    /* REMOVED: width: 60px; */ /* This was causing the stretch when max-height was also applied */
+    height: auto; /* Ensure height adjusts proportionally */
+    max-height: 40px; /* Limits the height */
+    width: auto; /* ADDED: This is crucial. It allows the width to adjust based on the height, maintaining aspect ratio. */
     transition: transform 0.3s ease;
 }
 
@@ -98,7 +98,7 @@ a:hover {
 .navbar .nav-links {
     display: flex;
     list-style: none;
-    gap: 30px; /* Modern spacing for navigation items */
+    gap: 30px;
 }
 
 .navbar .nav-links a {
@@ -106,7 +106,7 @@ a:hover {
     font-weight: 700;
     font-size: 1.1rem;
     position: relative;
-    padding: 10px 0; /* Add padding for better click area */
+    padding: 10px 0;
     transition: color 0.3s ease, transform 0.2s ease;
 }
 
@@ -116,22 +116,21 @@ a:hover {
     width: 0;
     height: 3px;
     background-color: var(--primary-color);
-    left: 50%; /* Start from center */
-    transform: translateX(-50%); /* Center the underline */
+    left: 50%;
+    transform: translateX(-50%);
     bottom: 0;
     transition: width 0.3s ease-in-out;
 }
 
 .navbar .nav-links a:hover {
-    color: var(--primary-color); /* Highlight text on hover */
-    transform: translateY(-2px); /* Subtle lift effect */
+    color: var(--primary-color);
+    transform: translateY(-2px);
 }
 
 .navbar .nav-links a:hover::after {
     width: 100%;
 }
 
-/* Active link styling (for future JS implementation or manual highlighting) */
 .navbar .nav-links a.active {
     color: var(--primary-color);
 }
@@ -141,13 +140,13 @@ a:hover {
 }
 
 .hamburger {
-    display: none; /* Hidden by default for desktop */
+    display: none;
     background: none;
     border: none;
     color: var(--dark-text);
     font-size: 1.8rem;
     cursor: pointer;
-    z-index: 1001; /* Ensure it's above everything */
+    z-index: 1001;
 }
 
 /* Hero Section */
@@ -160,12 +159,12 @@ a:hover {
     text-align: center;
     position: relative;
     color: var(--dark-text);
-    padding-top: 80px; /* To account for fixed header */
+    padding-top: 56px;
 }
 
 .hero-content {
     max-width: 900px;
-    animation: fadeInScale 1.5s ease-out forwards; /* Animation for hero content */
+    animation: fadeInScale 1.5s ease-out forwards;
     opacity: 0;
     transform: scale(0.9);
 }
@@ -246,13 +245,12 @@ a:hover {
 }
 
 .countdown-timer small {
-    font-size: 0.5em; /* Smaller label for 'Days', 'Hours' etc. */
+    font-size: 0.5em;
     font-weight: 400;
-    display: inline-block; /* Keep them together */
+    display: inline-block;
     margin: 0 5px;
     color: var(--light-text);
 }
-
 
 /* About Section */
 .about-section {
@@ -281,10 +279,10 @@ a:hover {
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Adjusted for 2 items */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 40px;
     text-align: center;
-    justify-content: center; /* Center items if less than grid fills row */
+    justify-content: center;
 }
 
 .feature-item {
@@ -375,7 +373,7 @@ a:hover {
 }
 
 .timeline-content ul li::before {
-    content: '\2022'; /* Bullet point */
+    content: '\2022';
     color: var(--primary-color);
     font-weight: bold;
     display: inline-block;
@@ -393,9 +391,9 @@ a:hover {
 .video-container {
     position: relative;
     width: 100%;
-    max-width: 960px; /* Max width for videos */
+    max-width: 960px;
     margin: 0 auto;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    padding-bottom: 56.25%;
     height: 0;
     border-radius: 15px;
     overflow: hidden;
@@ -509,21 +507,21 @@ a:hover {
 /* Responsive Design */
 @media (max-width: 992px) {
     .navbar .nav-links {
-        display: none; /* Hidden by default for mobile */
+        display: none;
         flex-direction: column;
         width: 100%;
         position: absolute;
-        top: 80px; /* Below the header */
+        top: 56px;
         left: 0;
-        background: rgba(0, 0, 0, 0.95); /* Slightly darker for mobile menu */
+        background: rgba(0, 0, 0, 0.95);
         padding: 20px 0;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
-        z-index: 999; /* Ensure it's above other content */
+        z-index: 999;
     }
 
     .navbar .nav-links.active {
-        display: flex; /* Show nav links when active */
+        display: flex;
     }
 
     .navbar .nav-links li {
@@ -532,17 +530,17 @@ a:hover {
     }
 
     .navbar .nav-links a {
-        padding: 15px 0; /* Larger clickable area on mobile */
+        padding: 15px 0;
         width: 100%;
-        display: block; /* Make link take full width */
+        display: block;
     }
 
     .navbar .nav-links a::after {
-        height: 2px; /* Thinner underline on mobile */
+        height: 2px;
     }
 
     .hamburger {
-        display: block; /* Show hamburger icon */
+        display: block;
     }
 
     .hero-title {
@@ -575,11 +573,11 @@ a:hover {
 
     .roadmap-timeline {
         padding-left: 20px;
-        margin-right: 20px; /* Adjust for better spacing on smaller screens */
+        margin-right: 20px;
     }
 
     .timeline-dot {
-        left: -10px; /* Adjust dot position */
+        left: -10px;
         width: 16px;
         height: 16px;
         border-width: 3px;
@@ -594,7 +592,7 @@ a:hover {
     }
 
     .video-container {
-        max-width: 90%; /* Constrain video on smaller screens */
+        max-width: 90%;
         margin: 0 auto;
     }
 }
@@ -659,7 +657,10 @@ a:hover {
 
 @media (max-width: 480px) {
     .navbar .logo img {
-        width: 50px;
+        /* REMOVED: width: 50px; */
+        height: auto;
+        max-height: 35px;
+        width: auto; /* ADDED: Ensure aspect ratio is maintained on smaller screens too */
     }
 
     .hero-title {
@@ -674,7 +675,7 @@ a:hover {
         font-size: 1.5rem;
     }
     .countdown-timer small {
-        font-size: 0.7em; /* Adjust small labels for very small screens */
+        font-size: 0.7em;
     }
 
     .section-title {
@@ -689,6 +690,6 @@ a:hover {
         left: -8px;
     }
     .features-grid {
-        grid-template-columns: 1fr; /* Stack features vertically on very small screens */
+        grid-template-columns: 1fr;
     }
-}	
+}
