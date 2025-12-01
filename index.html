@@ -72,7 +72,7 @@
         html, body {
             width: 100%;
             max-width: 100%;
-            overflow-x: hidden; /* Fix horizontal scroll on mobile */
+            overflow-x: hidden;
             background-color: #050505;
             color: #ffffff;
         }
@@ -85,14 +85,14 @@
 
         /* Custom Cursor (Desktop Only) */
         @media (min-width: 768px) {
-            body, a, button, input, .cursor-pointer { cursor: none !important; } /* Force hide system cursor */
+            body, a, button, input, .cursor-pointer { cursor: none !important; }
             #cursor-dot, #cursor-outline { display: block !important; }
         }
         
         #cursor-dot, #cursor-outline {
             position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
             border-radius: 50%; 
-            z-index: 2147483647; /* MAX Z-INDEX to ensure visibility */
+            z-index: 2147483647;
             pointer-events: none; 
             display: none;
         }
@@ -103,7 +103,7 @@
         }
         body:hover #cursor-outline { opacity: 1; }
 
-        /* CRT Scanline Effect Overlay - Fixed width */
+        /* CRT Scanline Effect */
         .scanlines {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1));
@@ -165,11 +165,9 @@
         .tilt-card-inner { transform: translateZ(20px); }
         .tilt-card:hover { border-color: #00F0FF; box-shadow: 0 0 30px rgba(0, 240, 255, 0.1); }
 
-        /* Mobile Pulse Effect for Cards */
+        /* Mobile Pulse Effect */
         @media (max-width: 768px) {
-            .tilt-card {
-                animation: border-pulse 4s infinite;
-            }
+            .tilt-card { animation: border-pulse 4s infinite; }
             @keyframes border-pulse {
                 0% { border-color: #333; }
                 50% { border-color: rgba(0, 240, 255, 0.5); box-shadow: 0 0 15px rgba(0, 240, 255, 0.1); }
@@ -184,13 +182,8 @@
 
         /* Floating Background Shapes */
         .floating-shape {
-            position: fixed;
-            border-radius: 50%; 
-            filter: blur(80px); 
-            opacity: 0.4;
-            z-index: -1; 
+            position: fixed; border-radius: 50%; filter: blur(80px); opacity: 0.4; z-index: -1; 
         }
-        /* Mobile: Use CSS Animation. Desktop: Use JS Parallax */
         .animate-blob { animation: blob 10s infinite; }
 
         /* Hero BG Override */
@@ -203,38 +196,22 @@
 
         /* Section Divider */
         .cyber-divider {
-            height: 1px;
-            width: 100%;
-            background: linear-gradient(90deg, transparent 0%, #00F0FF 50%, transparent 100%);
-            opacity: 0.3;
-            margin: 0 auto;
-            position: relative;
+            height: 1px; width: 100%; background: linear-gradient(90deg, transparent 0%, #00F0FF 50%, transparent 100%);
+            opacity: 0.3; margin: 0 auto; position: relative;
         }
         .cyber-divider::after {
-            content: '';
-            position: absolute;
-            left: 50%; top: 50%;
-            transform: translate(-50%, -50%);
-            width: 50px; height: 4px;
-            background: #00F0FF;
-            box-shadow: 0 0 10px #00F0FF;
+            content: ''; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+            width: 50px; height: 4px; background: #00F0FF; box-shadow: 0 0 10px #00F0FF;
         }
 
-        /* Reveal on Scroll Animation Class */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body class="antialiased selection:bg-beast-pink selection:text-white font-sans bg-black">
 
-    <!-- Custom Cursor (Desktop) -->
+    <!-- Custom Cursor -->
     <div id="cursor-dot"></div>
     <div id="cursor-outline"></div>
 
@@ -242,9 +219,8 @@
     <div class="scanlines"></div>
     <canvas id="bg-canvas" class="fixed inset-0 z-0"></canvas>
     
-    <!-- Parallax/Floating Shapes - Wrapped in fixed container to prevent scroll overflow -->
+    <!-- Parallax/Floating Shapes -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
-        <!-- Added 'animate-blob' for mobile life, desktop JS overrides position -->
         <div class="floating-shape bg-beast-blue w-64 h-64 md:w-96 md:h-96 top-0 left-[-50px] parallax animate-blob" data-speed="0.2"></div>
         <div class="floating-shape bg-beast-pink w-64 h-64 md:w-80 md:h-80 bottom-0 right-[-50px] parallax animate-blob" style="animation-delay: 2s;" data-speed="0.3"></div>
     </div>
@@ -265,8 +241,9 @@
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center gap-8">
                     <a href="#about" class="text-gray-300 hover:text-beast-blue text-sm font-bold uppercase tracking-widest transition-colors">The Show</a>
-                    <a href="#latest" class="text-gray-300 hover:text-beast-blue text-sm font-bold uppercase tracking-widest transition-colors">Hype Feed</a>
                     <a href="#howtobuy" class="text-gray-300 hover:text-beast-blue text-sm font-bold uppercase tracking-widest transition-colors">How to Buy</a>
+                    <a href="#roadmap" class="text-gray-300 hover:text-beast-blue text-sm font-bold uppercase tracking-widest transition-colors">Roadmap</a>
+                    <a href="#latest" class="text-gray-300 hover:text-beast-blue text-sm font-bold uppercase tracking-widest transition-colors">Hype Feed</a>
                     <a href="https://dexscreener.com/solana/HpaPfnQN3ATmMer8mN8i39zVwv618Hs4azXy9t48pump" target="_blank" class="bg-white text-black hover:bg-beast-blue px-6 py-2 rounded font-black text-sm uppercase transform hover:-translate-y-1 transition-all shadow-[0_0_15px_rgba(255,255,255,0.4)] hover:shadow-[0_0_20px_#00F0FF]">
                         Buy $BEAST
                     </a>
@@ -283,8 +260,9 @@
         <div class="hidden md:hidden border-t border-white/10 bg-black" id="mobile-menu">
             <div class="flex flex-col p-4 space-y-4 text-center">
                 <a href="#about" class="block text-white font-bold uppercase py-2">The Show</a>
-                <a href="#latest" class="block text-white font-bold uppercase py-2">Hype Feed</a>
                 <a href="#howtobuy" class="block text-white font-bold uppercase py-2">How to Buy</a>
+                <a href="#roadmap" class="block text-white font-bold uppercase py-2">Roadmap</a>
+                <a href="#latest" class="block text-white font-bold uppercase py-2">Hype Feed</a>
                 <a href="https://dexscreener.com/solana/HpaPfnQN3ATmMer8mN8i39zVwv618Hs4azXy9t48pump" class="block text-beast-blue font-black uppercase py-2">Buy $BEAST</a>
             </div>
         </div>
@@ -293,31 +271,26 @@
     <!-- Hero Section -->
     <section class="relative min-h-[90vh] flex items-center justify-center pt-20 pb-12 hero-bg-image w-full">
         <div class="relative z-10 text-center px-4 max-w-6xl mx-auto w-full">
-            <!-- Status Badge -->
             <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-beast-blue/30 bg-beast-blue/10 mb-6 backdrop-blur-md animate-fade-in-down">
                 <span class="w-2 h-2 rounded-full bg-beast-blue animate-ping"></span>
                 <span class="text-beast-blue font-mono text-[10px] md:text-xs uppercase tracking-widest">System Online: Season 2 Initiated</span>
             </div>
             
-            <!-- Glitch Title -->
             <h1 class="glitch-wrapper mb-4 block">
                 <span class="glitch-text font-display text-5xl md:text-7xl lg:text-9xl font-black text-white leading-none uppercase" data-text="GAME ON">
                     GAME ON
                 </span>
             </h1>
             
-            <!-- Typing Effect Subtitle -->
             <h2 class="font-display text-xl md:text-3xl lg:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-beast-blue to-beast-pink uppercase tracking-tighter mb-8 h-8 md:h-12">
                 <span id="typewriter"></span><span class="animate-pulse">|</span>
             </h2>
             
-            <!-- Description -->
             <p class="text-base md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-md reveal">
                 The largest reality competition in history meets the most explosive community on Solana. 
                 <span class="text-white font-bold">Jan 7th.</span> History will be written.
             </p>
 
-            <!-- CTA Buttons -->
             <div class="flex flex-col sm:flex-row gap-5 justify-center items-center mb-12 reveal">
                 <a href="https://dexscreener.com/solana/HpaPfnQN3ATmMer8mN8i39zVwv618Hs4azXy9t48pump" target="_blank" class="w-full sm:w-auto relative group px-8 py-4 bg-beast-blue text-black font-black text-lg uppercase tracking-wider skew-x-0 md:skew-x-[-10deg] hover:bg-white transition-colors shadow-[0_0_30px_rgba(0,240,255,0.4)]">
                     <span class="block skew-x-0 md:skew-x-[10deg] text-center">Initiate Buy Sequence</span>
@@ -327,7 +300,6 @@
                 </a>
             </div>
 
-            <!-- Contract Terminal -->
             <div class="max-w-xl mx-auto tech-panel p-4 rounded-lg cursor-pointer group hover:border-beast-blue transition-colors reveal" onclick="copyToClipboard('HpaPfnQN3ATmMer8mN8i39zVwv618Hs4azXy9t48pump')">
                 <div class="flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4 font-mono text-xs md:text-sm">
                     <span class="text-beast-pink animate-pulse hidden md:inline">> CA:</span>
@@ -340,7 +312,6 @@
             </div>
         </div>
 
-        <!-- Scroll Chevron - Centering Fixed -->
         <div class="absolute bottom-4 left-0 w-full flex flex-col items-center gap-2 animate-bounce opacity-50 pointer-events-none">
             <span class="text-[10px] font-mono uppercase tracking-[0.2em]">Scroll to Enter</span>
             <i class="fas fa-chevron-down text-beast-blue"></i>
@@ -361,7 +332,6 @@
     <section id="about" class="py-12 md:py-20 relative z-10">
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid md:grid-cols-2 gap-12 items-center">
-                <!-- Countdown -->
                 <div class="text-center md:text-left reveal">
                     <h3 class="text-beast-pink font-mono text-sm uppercase tracking-widest mb-2">Target Date</h3>
                     <h2 class="font-display text-3xl md:text-4xl text-white mb-8">LAUNCH IMMINENT</h2>
@@ -386,7 +356,6 @@
                     </div>
                 </div>
 
-                <!-- Feature Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div class="tech-panel p-6 rounded hover:bg-white/5 transition-colors group reveal">
                         <i class="fas fa-users text-3xl text-beast-blue mb-4 group-hover:scale-110 transition-transform block"></i>
@@ -418,9 +387,7 @@
 
     <!-- How To Buy -->
     <section id="howtobuy" class="py-12 md:py-24 relative z-10">
-        <!-- Optional Grid Overlay -->
         <div class="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
-        
         <div class="max-w-6xl mx-auto px-4 relative z-10">
             <div class="text-center mb-12 md:mb-16 reveal">
                 <h2 class="font-display text-3xl md:text-5xl mb-4 text-white">INITIATE <span class="text-beast-blue">BUY SEQUENCE</span></h2>
@@ -428,7 +395,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Step 1 -->
                 <div class="tilt-card p-8 group relative reveal">
                     <div class="absolute -top-4 -left-4 w-10 h-10 md:w-12 md:h-12 bg-beast-blue rounded-full flex items-center justify-center font-display text-lg md:text-xl font-bold text-black border-4 border-[#080808] z-20">1</div>
                     <div class="tilt-card-inner">
@@ -436,23 +402,19 @@
                             <i class="fas fa-wallet text-3xl text-white"></i>
                         </div>
                         <h3 class="text-xl font-bold text-white text-center mb-2">Create Wallet</h3>
-                        <p class="text-gray-400 text-sm text-center">Download Phantom Wallet from the app store. This is your inventory.</p>
+                        <p class="text-gray-400 text-sm text-center">Download Phantom Wallet from the app store.</p>
                     </div>
                 </div>
-
-                <!-- Step 2 -->
                 <div class="tilt-card p-8 group relative reveal" style="transition-delay: 200ms;">
                     <div class="absolute -top-4 -left-4 w-10 h-10 md:w-12 md:h-12 bg-beast-blue rounded-full flex items-center justify-center font-display text-lg md:text-xl font-bold text-black border-4 border-[#080808] z-20">2</div>
                     <div class="tilt-card-inner">
                         <div class="h-16 w-16 bg-gray-800 rounded-lg flex items-center justify-center mb-6 mx-auto group-hover:bg-beast-blue/20 transition-colors">
-                            <i class="fas fa-money-bill-wave text-3xl text-white"></i>
+                            <i class="fas fa-coins text-3xl text-white"></i>
                         </div>
                         <h3 class="text-xl font-bold text-white text-center mb-2">Acquire SOL</h3>
-                        <p class="text-gray-400 text-sm text-center">Load your wallet with Solana (SOL). You'll need this for gas and trading.</p>
+                        <p class="text-gray-400 text-sm text-center">Load your wallet with Solana (SOL).</p>
                     </div>
                 </div>
-
-                <!-- Step 3 -->
                 <div class="tilt-card p-8 group relative reveal" style="transition-delay: 400ms;">
                     <div class="absolute -top-4 -left-4 w-10 h-10 md:w-12 md:h-12 bg-beast-pink rounded-full flex items-center justify-center font-display text-lg md:text-xl font-bold text-white border-4 border-[#080808] z-20 animate-pulse">3</div>
                     <div class="tilt-card-inner">
@@ -460,11 +422,77 @@
                             <i class="fas fa-rocket text-3xl text-white"></i>
                         </div>
                         <h3 class="text-xl font-bold text-white text-center mb-2">Swap for $BEAST</h3>
-                        <p class="text-gray-400 text-sm text-center">Go to Raydium or Jupiter, paste the CA, and swap SOL for $BEAST.</p>
+                        <p class="text-gray-400 text-sm text-center">Use Raydium or Jupiter to swap.</p>
                         <button onclick="copyToClipboard('HpaPfnQN3ATmMer8mN8i39zVwv618Hs4azXy9t48pump')" class="mt-4 w-full py-2 bg-beast-pink/20 text-beast-pink border border-beast-pink rounded hover:bg-beast-pink hover:text-white transition-all text-xs font-bold uppercase">
                             Copy CA
                         </button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIVIDER -->
+    <div class="cyber-divider"></div>
+
+    <!-- NEW SECTION: ROADMAP (Realistic & Fun) -->
+    <section id="roadmap" class="py-12 md:py-24 relative z-10">
+        <div class="max-w-5xl mx-auto px-4 md:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-display text-3xl md:text-5xl mb-4 text-white">THE <span class="text-beast-blue">MISSION</span></h2>
+                <p class="text-gray-400 font-mono text-sm">Strategic objectives for Season 2.</p>
+            </div>
+
+            <div class="relative space-y-8">
+                <!-- Center Line -->
+                <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-beast-blue via-beast-pink to-transparent transform md:-translate-x-1/2 opacity-30"></div>
+
+                <!-- Phase 1 -->
+                <div class="relative md:flex justify-between items-center w-full group reveal">
+                    <div class="md:w-5/12 md:text-right pr-4 md:pr-12 pl-12 md:pl-0">
+                        <div class="tilt-card p-6 bg-black/50 border-l-4 md:border-l-0 md:border-r-4 border-beast-blue relative">
+                            <h3 class="font-display text-xl text-beast-blue mb-1">PHASE 1: VIBE CHECK</h3>
+                            <ul class="text-gray-400 text-xs font-mono space-y-1">
+                                <li>> Launch Token & Website</li>
+                                <li>> Raid X (Twitter)</li>
+                                <li>> Gather the Horde</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="absolute left-4 md:left-1/2 w-4 h-4 bg-beast-blue rounded-full transform -translate-x-1/2 shadow-[0_0_15px_#00F0FF] z-10 top-6 md:top-auto"></div>
+                    <div class="hidden md:block md:w-5/12"></div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="relative md:flex justify-between items-center w-full group reveal" style="transition-delay: 200ms;">
+                    <div class="hidden md:block md:w-5/12"></div>
+                    <div class="absolute left-4 md:left-1/2 w-4 h-4 bg-beast-pink rounded-full transform -translate-x-1/2 shadow-[0_0_15px_#FF00AA] z-10 top-6 md:top-auto"></div>
+                    <div class="md:w-5/12 pl-12 md:pl-12">
+                        <div class="tilt-card p-6 bg-black/50 border-l-4 border-beast-pink relative">
+                            <h3 class="font-display text-xl text-beast-pink mb-1">PHASE 2: WATCH PARTY</h3>
+                            <ul class="text-gray-400 text-xs font-mono space-y-1">
+                                <li>> Live Stream Events</li>
+                                <li>> Meme Contests</li>
+                                <li>> Community Predictions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="relative md:flex justify-between items-center w-full group reveal" style="transition-delay: 400ms;">
+                    <div class="md:w-5/12 md:text-right pr-4 md:pr-12 pl-12 md:pl-0">
+                        <div class="tilt-card p-6 bg-black/50 border-l-4 md:border-l-0 md:border-r-4 border-white relative">
+                            <h3 class="font-display text-xl text-white mb-1">PHASE 3: FULL SEND</h3>
+                            <ul class="text-gray-400 text-xs font-mono space-y-1">
+                                <li>> Viral Stunts</li>
+                                <li>> Merch Drop?</li>
+                                <li>> Hold & Hope</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="absolute left-4 md:left-1/2 w-4 h-4 bg-white rounded-full transform -translate-x-1/2 shadow-[0_0_15px_white] z-10 top-6 md:top-auto"></div>
+                    <div class="hidden md:block md:w-5/12"></div>
                 </div>
             </div>
         </div>
@@ -501,7 +529,7 @@
                         </div>
                     </div>
                 </a>
-
+                
                 <!-- Tweet 2 -->
                 <a href="https://x.com/MrBeast/status/1991895979914899573" target="_blank" class="tilt-card p-6 flex gap-4 cursor-pointer group reveal" style="transition-delay: 100ms;">
                      <div class="tilt-card-inner flex gap-4 w-full">
