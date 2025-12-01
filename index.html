@@ -1,161 +1,685 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeastGames Crypto - Season 2</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="logo.png">
+    <title>BeastGames Season 2 | Jan 7th</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Russo+One&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        beast: {
+                            blue: '#00F0FF',
+                            pink: '#FF00AA',
+                            dark: '#050505',
+                            card: 'rgba(20, 20, 25, 0.7)',
+                            border: 'rgba(255, 255, 255, 0.1)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        display: ['Russo One', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'hero-pattern': "url('hero-background.png')", 
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles for Effects that Tailwind doesn't cover easily */
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Glitch Effect */
+        .glitch-wrapper {
+            position: relative;
+        }
+        .glitch-text {
+            position: relative;
+            z-index: 1;
+        }
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 5, 0.0); /* Transparent to show bg if needed */
+        }
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -1px 0 #00F0FF;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -1px 0 #FF00AA;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(31px, 9999px, 94px, 0); }
+            5% { clip: rect(70px, 9999px, 21px, 0); }
+            10% { clip: rect(6px, 9999px, 83px, 0); }
+            15% { clip: rect(22px, 9999px, 6px, 0); }
+            20% { clip: rect(69px, 9999px, 49px, 0); }
+            100% { clip: rect(10px, 9999px, 90px, 0); }
+        }
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 99px, 0); }
+            5% { clip: rect(12px, 9999px, 19px, 0); }
+            10% { clip: rect(49px, 9999px, 12px, 0); }
+            15% { clip: rect(8px, 9999px, 3px, 0); }
+            20% { clip: rect(89px, 9999px, 6px, 0); }
+            100% { clip: rect(20px, 9999px, 40px, 0); }
+        }
+
+        /* Glassmorphism */
+        .glass-panel {
+            background: rgba(20, 20, 25, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .social-card {
+            transition: all 0.3s ease;
+        }
+        .social-card:hover {
+            border-color: #00F0FF;
+            transform: translateY(-5px);
+            background: rgba(30, 30, 40, 0.8);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00F0FF;
+        }
+
+        /* Particle Canvas */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        /* Hero Background Image Override */
+        .hero-bg-image {
+            background-image: linear-gradient(rgba(5,5,5,0.3), rgba(5,5,5,0.9)), url('hero-background.png');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
 </head>
-<body>
-    <header class="header">
-        <nav class="navbar container">
-            <div class="logo">
-                <a href="#"><img src="logo.png" alt="BeastGames Logo"></a>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#roadmap">Roadmap</a></li>
-                <li><a href="#trailer">Trailer</a></li>
-                <li><a href="#community">Community</a></li>
-            </ul>
-            <button class="hamburger" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-        </nav>
-    </header>
+<body class="antialiased selection:bg-beast-pink selection:text-white">
 
-    <section id="hero" class="hero-section">
-        <div class="hero-content container">
-            <h1 class="hero-title">BeastGames Memecoin <span class="highlight">Season 2</span></h1>
-            <p class="hero-subtitle">The ultimate fusion of gaming, community, and crypto. Get ready for a new era of decentralized entertainment!</p>
-            <a href="https://dexscreener.com/solana/HpaPfnQN3ATmMer8mN8i39zVwv618Hs4azXy9t48pump" target="_blank" class="cta-button primary-button">Buy $BEAST</a>
-            <p class="ca-text">Contract Address: <span class="contract-address">HpaPfnQN3ATmMer8mN8i39zVwv618Hs4azXy9t48pump</span></p>
-        </div>
-    </section>
+    <!-- Interactive Background -->
+    <canvas id="bg-canvas"></canvas>
 
-    <section id="countdown" class="countdown-section">
-        <div class="container">
-            <p class="countdown-label">Time until BeastGames Season 2 Kicks Off! (Expected)</p>
-            <div id="timer" class="countdown-timer"></div>
-        </div>
-    </section>
-
-    <section id="about" class="about-section">
-        <div class="container">
-            <h2 class="section-title">What is <span class="highlight">BeastGames Memecoin</span>?</h2>
-            <div class="about-content">
-                <p>We're back! BeastGames Memecoin shook the crypto world in its last season, soaring to a <b>$5M market cap</b> and cultivating a massive, passionate following. We proved the power of community, gaming, and memecoins combined.</p>
-                <p>Now, with Season 2, we're ready to do it again. Get prepared for even more thrilling challenges, unparalleled community engagement, and a token that continues to redefine decentralized entertainment. This isn't just a coin; it's a movement where every holder is part of the game.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="features" class="features-section">
-        <div class="container">
-            <h2 class="section-title">Why Join <span class="highlight">BeastGames Memecoin</span>?</h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <i class="fas fa-users feature-icon"></i>
-                    <h3>Vibrant Community</h3>
-                    <p>Join a passionate community of gamers and crypto enthusiasts on Telegram and X (formerly Twitter).</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-chart-line feature-icon"></i>
-                    <h3>Growth Potential</h3>
-                    <p>Be part of a project with strong fundamentals, active development, and a focus on building.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="roadmap" class="roadmap-section">
-        <div class="container">
-            <h2 class="section-title">Our <span class="highlight">Roadmap</span> for Season 2</h2>
-            <div class="roadmap-timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Phase 1: Launch & Community Build</h3>
-                        <ul>
-                            <li>Website Relaunch & Smart Contract Deployment</li>
-                            <li>Initial Marketing Campaigns & Influencer Partnerships</li>
-                            <li>Community AMA Sessions & Contests</li>
-                        </ul>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="glass-panel border-t-0 border-x-0 rounded-b-2xl mx-auto max-w-[95%] mt-2">
+            <div class="px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-20">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer group">
+                        <!-- Using the uploaded logo.png if available, fallback to CSS shape -->
+                        <img src="logo.png" alt="BeastGames" class="h-10 w-auto object-contain group-hover:scale-110 transition-transform onerror-fallback" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="hidden w-10 h-10 bg-gradient-to-br from-beast-blue to-beast-pink rounded-lg flex items-center justify-center font-display font-bold text-xl text-white shadow-[0_0_15px_rgba(0,240,255,0.5)]">B</div>
+                        
+                        <span class="font-display font-bold text-xl tracking-wider text-white group-hover:text-beast-blue transition-colors">
+                            BEAST<span class="text-beast-pink">GAMES</span>
+                        </span>
                     </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Phase 2: Game Integration & Partnerships</h3>
-                        <ul>
-                            <li>Integration of BeastGames Season 2 Prediction Platform</li>
-                            <li>Partnerships with Gaming Guilds & Crypto Platforms</li>
-                            <li>Enhanced Staking & Farming Opportunities (Future Consideration)</li>
-                        </ul>
+
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-8">
+                            <a href="#about" class="text-gray-300 hover:text-beast-blue px-3 py-2 rounded-md text-sm font-semibold transition-colors uppercase tracking-widest">The Show</a>
+                            <a href="#latest" class="text-gray-300 hover:text-beast-blue px-3 py-2 rounded-md text-sm font-semibold transition-colors uppercase tracking-widest">Latest</a>
+                            <a href="#roadmap" class="text-gray-300 hover:text-beast-blue px-3 py-2 rounded-md text-sm font-semibold transition-colors uppercase tracking-widest">Roadmap</a>
+                            <a href="https://dexscreener.com/solana/HpaPfnQN3ATmMer8mN8i39zVwv618Hs4azXy9t48pump" target="_blank" class="bg-white text-black hover:bg-beast-blue hover:text-black px-6 py-2 rounded-full font-bold text-sm transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                                BUY $BEAST
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Phase 3: Ecosystem Expansion & Global Reach</h3>
-                        <ul>
-                            <li>Development of Mini-Games & NFTs (Future Consideration)</li>
-                            <li>Cross-Chain Bridging & CEX Listings (Future Consideration)</li>
-                            <li>Global Marketing & Localization Efforts</li>
-                        </ul>
+
+                    <!-- Mobile Menu Button -->
+                    <div class="-mr-2 flex md:hidden">
+                        <button type="button" id="mobile-menu-btn" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none">
+                            <i class="fas fa-bars text-xl"></i>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <section id="trailer" class="trailer-section">
-        <div class="container">
-            <h2 class="section-title">Watch the <span class="highlight">BeastGames Trailer</span></h2>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/YOUR_YOUTUBE_TRAILER_ID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <!-- Mobile Menu Panel -->
+        <div class="hidden md:hidden glass-panel border-t-0 mx-4 mt-2 rounded-xl" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#about" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">The Show</a>
+                <a href="#latest" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Latest</a>
+                <a href="#roadmap" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Roadmap</a>
+                <a href="https://dexscreener.com/solana/HpaPfnQN3ATmMer8mN8i39zVwv618Hs4azXy9t48pump" class="text-beast-blue hover:text-white block px-3 py-2 rounded-md text-base font-bold">BUY $BEAST</a>
             </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden pt-20 hero-bg-image">
+        
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <div class="inline-block mb-4 px-4 py-1 rounded-full border border-beast-blue/50 bg-beast-blue/10 text-beast-blue font-bold text-sm tracking-widest uppercase animate-pulse">
+                Premiere Date Confirmed
+            </div>
+            
+            <h1 class="glitch-wrapper mb-6">
+                <span class="glitch-text font-display text-6xl md:text-8xl lg:text-9xl font-black text-white leading-tight uppercase" data-text="JAN 7TH">
+                    JAN 7TH
+                </span>
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed shadow-black drop-shadow-lg">
+                The biggest reality competition in history. <br>
+                <span class="text-beast-pink font-bold">Season 2</span> is coming. Are you ready?
+            </p>
+
+            <!-- Buttons -->
+            <div class="flex flex-col md:flex-row gap-4 justify-center items-center mb-12">
+                <a href="https://dexscreener.com/solana/HpaPfnQN3ATmMer8mN8i39zVwv618Hs4azXy9t48pump" target="_blank" class="group relative px-8 py-4 bg-beast-blue text-black font-black text-lg uppercase tracking-wider rounded-sm overflow-hidden transition-all hover:scale-105">
+                    <div class="absolute inset-0 w-full h-full bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 skew-y-12"></div>
+                    <span class="relative flex items-center gap-2">
+                        Buy $BEAST <i class="fas fa-rocket"></i>
+                    </span>
+                </a>
+                
+                <a href="#latest" class="group relative px-8 py-4 border border-white/30 text-white font-black text-lg uppercase tracking-wider rounded-sm overflow-hidden transition-all hover:border-beast-pink hover:text-beast-pink backdrop-blur-sm bg-black/30">
+                    <span class="relative">See Updates</span>
+                </a>
+            </div>
+
+            <!-- Contract Address -->
+            <div class="glass-panel inline-flex items-center gap-3 px-6 py-3 rounded-xl max-w-full overflow-hidden cursor-pointer group hover:border-beast-blue transition-colors" onclick="copyToClipboard('HpaPfnQN3ATmMer8mN8i39zVwv618Hs4azXy9t48pump')">
+                <i class="fab fa-solana text-beast-blue text-xl"></i>
+                <span class="font-mono text-sm md:text-base text-gray-300 truncate max-w-[200px] md:max-w-none" id="ca-text">HpaPfnQN3ATmMer8mN8i39zVwv618Hs4azXy9t48pump</span>
+                <i class="fas fa-copy text-gray-500 group-hover:text-white transition-colors ml-2"></i>
+                <div id="copy-feedback" class="absolute inset-0 bg-beast-blue flex items-center justify-center font-bold text-black translate-y-full transition-transform duration-200">
+                    COPIED!
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-beast-blue text-2xl"></i>
         </div>
     </section>
 
-
-    <section id="livestream" class="livestream-section">
-        <div class="container">
-            <h2 class="section-title">Live <span class="highlight">Broadcast</span></h2>
-            <div class="livestream-container">
-                <div class="livestream-placeholder">
-                    <p>Livestream goes live when BeastGames Season 2 begins!</p>
-                    <p>Don't miss a single moment of the action.</p>
+    <!-- Countdown Section -->
+    <section class="py-12 relative bg-black/50 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="font-display text-2xl md:text-3xl mb-8 text-white uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-500">Time Until Premiere</h2>
+            <div id="countdown" class="grid grid-cols-4 gap-2 md:gap-8 max-w-4xl mx-auto">
+                <!-- Days -->
+                <div class="glass-panel p-4 md:p-6 rounded-2xl border-b-4 border-beast-blue">
+                    <div id="days" class="font-display text-3xl md:text-6xl text-white mb-2">00</div>
+                    <div class="text-beast-blue font-bold uppercase tracking-widest text-[10px] md:text-xs">Days</div>
+                </div>
+                <!-- Hours -->
+                <div class="glass-panel p-4 md:p-6 rounded-2xl border-b-4 border-beast-pink">
+                    <div id="hours" class="font-display text-3xl md:text-6xl text-white mb-2">00</div>
+                    <div class="text-beast-pink font-bold uppercase tracking-widest text-[10px] md:text-xs">Hours</div>
+                </div>
+                <!-- Minutes -->
+                <div class="glass-panel p-4 md:p-6 rounded-2xl border-b-4 border-white">
+                    <div id="minutes" class="font-display text-3xl md:text-6xl text-white mb-2">00</div>
+                    <div class="text-gray-400 font-bold uppercase tracking-widest text-[10px] md:text-xs">Minutes</div>
+                </div>
+                <!-- Seconds -->
+                <div class="glass-panel p-4 md:p-6 rounded-2xl border-b-4 border-beast-blue">
+                    <div id="seconds" class="font-display text-3xl md:text-6xl text-beast-blue mb-2">00</div>
+                    <div class="text-beast-blue font-bold uppercase tracking-widest text-[10px] md:text-xs">Seconds</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="community" class="community-section">
-        <div class="container">
-            <h2 class="section-title">Join Our <span class="highlight">Community</span></h2>
-            <div class="social-links">
-                <a href="https://t.me/BeastGamesPortal" target="_blank" class="social-link"><i class="fab fa-telegram-plane"></i> Telegram</a>
-                <a href="https://x.com/MrBeast/status/1922068781058109819" target="_blank" class="social-link"><i class="fab fa-twitter"></i> X (Twitter)</a>
-                <a href="https://dexscreener.com/solana/HpaPfnQN3ATmMer8mN8i39zVwv618Hs4azXy9t48pump" target="_blank" class="social-link"><i class="fas fa-chart-area"></i> Dexscreener</a>
+    <!-- Social Hype Section (New) -->
+    <section id="latest" class="py-24 bg-black relative">
+        <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-beast-blue/10 via-black to-black"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+            <div class="text-center mb-16 gsap-fade-up">
+                <i class="fab fa-twitter text-4xl text-beast-blue mb-4 animate-bounce"></i>
+                <h2 class="font-display text-4xl md:text-5xl mb-4">THE <span class="text-beast-pink">HYPE</span> FEED</h2>
+                <p class="text-gray-400">Straight from the source.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Tweet 1 -->
+                <a href="https://x.com/MrBeast/status/1992026128949858603" target="_blank" class="social-card glass-panel p-6 rounded-xl flex gap-4 cursor-pointer group gsap-stagger-card">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 rounded-full border-2 border-beast-blue bg-black flex items-center justify-center">
+                            <i class="fas fa-user-astronaut text-beast-blue text-xl"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="font-bold text-white">MrBeast</span>
+                            <i class="fas fa-check-circle text-blue-400 text-xs"></i>
+                            <span class="text-gray-500 text-sm">@MrBeast</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Beast Games Season 2 is going to shatter every record. We went bigger, harder, and crazier. Jan 7th. 🚀</p>
+                        <span class="text-beast-blue text-xs font-bold group-hover:underline">View on X &rarr;</span>
+                    </div>
+                </a>
+
+                <!-- Tweet 2 -->
+                <a href="https://x.com/MrBeast/status/1991895979914899573" target="_blank" class="social-card glass-panel p-6 rounded-xl flex gap-4 cursor-pointer group gsap-stagger-card">
+                    <div class="flex-shrink-0">
+                         <div class="w-12 h-12 rounded-full border-2 border-beast-pink bg-black flex items-center justify-center">
+                            <i class="fas fa-video text-beast-pink text-xl"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="font-bold text-white">MrBeast</span>
+                            <i class="fas fa-check-circle text-blue-400 text-xs"></i>
+                            <span class="text-gray-500 text-sm">@MrBeast</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Just finished editing episode 1... you guys have no idea what's coming. 🎬🤯</p>
+                        <span class="text-beast-pink text-xs font-bold group-hover:underline">View on X &rarr;</span>
+                    </div>
+                </a>
+
+                <!-- Tweet 3 -->
+                <a href="https://x.com/GWR/status/1991559990600175685" target="_blank" class="social-card glass-panel p-6 rounded-xl flex gap-4 cursor-pointer group gsap-stagger-card">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-black font-bold border-2 border-yellow-400">
+                            GWR
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="font-bold text-white">Guinness World Records</span>
+                            <i class="fas fa-check-circle text-blue-400 text-xs"></i>
+                            <span class="text-gray-500 text-sm">@GWR</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">New Record Verified: Largest Reality Competition Prize Pool ever? We're watching closely... 👀🏆</p>
+                        <span class="text-yellow-400 text-xs font-bold group-hover:underline">View on X &rarr;</span>
+                    </div>
+                </a>
+
+                 <!-- Tweet 4 -->
+                 <a href="https://x.com/MrBeast/status/1991551686272512139" target="_blank" class="social-card glass-panel p-6 rounded-xl flex gap-4 cursor-pointer group gsap-stagger-card">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 rounded-full border-2 border-white bg-black flex items-center justify-center">
+                            <i class="fas fa-fire text-white text-xl"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="font-bold text-white">MrBeast</span>
+                            <i class="fas fa-check-circle text-blue-400 text-xs"></i>
+                            <span class="text-gray-500 text-sm">@MrBeast</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Who's ready? Drop a 🔥 if you're watching day 1.</p>
+                        <span class="text-white text-xs font-bold group-hover:underline">View on X &rarr;</span>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="container">
-            <p>© 2025 BeastGames Crypto. All Rights Reserved.</p>
-            <div class="footer-links">
-                <a href="/privacy-policy" target="_blank">Privacy Policy</a>
-                <a href="/terms" target="_blank">Terms of Service</a>
+    <!-- Roadmap (Simplified & Realistic) -->
+    <section id="roadmap" class="py-24 relative overflow-hidden">
+        <div class="absolute right-0 bottom-0 w-1/3 h-1/2 bg-beast-pink/10 blur-[100px] rounded-full pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+            <h2 class="font-display text-4xl md:text-5xl mb-4 text-center text-white">THE <span class="text-beast-blue">PLAN</span></h2>
+            <p class="text-center text-gray-400 mb-16 max-w-xl mx-auto">No corporate BS. Just vibes, memes, and watching the show together.</p>
+            
+            <div class="relative space-y-8">
+                <!-- Vertical Line -->
+                <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-beast-blue via-beast-pink to-transparent md:left-1/2 transform md:-translate-x-1/2"></div>
+
+                <!-- Phase 1 -->
+                <div class="relative md:flex justify-between items-center w-full gsap-roadmap-item group">
+                    <div class="pl-20 md:pl-0 md:w-5/12 md:text-right md:pr-12">
+                        <h3 class="font-display text-2xl text-beast-blue mb-1">PHASE 1</h3>
+                        <h4 class="font-bold text-white text-lg mb-2">The Warm Up</h4>
+                        <ul class="text-gray-400 text-sm space-y-1 inline-block text-left md:text-right">
+                            <li class="flex items-center gap-2 md:justify-end"><span class="md:hidden">✅</span> Website Update ✅</li>
+                            <li class="flex items-center gap-2 md:justify-end"><span class="md:hidden">🔥</span> Community Hype</li>
+                            <li class="flex items-center gap-2 md:justify-end"><span class="md:hidden">🦍</span> Ape In</li>
+                        </ul>
+                    </div>
+                    <div class="absolute left-8 md:left-1/2 w-4 h-4 bg-beast-blue rounded-full transform -translate-x-1/2 shadow-[0_0_15px_#00F0FF] z-10"></div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="relative md:flex justify-between items-center w-full gsap-roadmap-item group">
+                    <div class="md:w-5/12"></div> <!-- Spacer -->
+                    <div class="pl-20 md:pl-12 md:w-5/12">
+                        <h3 class="font-display text-2xl text-beast-pink mb-1">PHASE 2</h3>
+                        <h4 class="font-bold text-white text-lg mb-2">Showtime (Jan 7)</h4>
+                        <ul class="text-gray-400 text-sm space-y-1">
+                            <li>📺 Discord Watch Parties</li>
+                            <li>📊 Community Prediction Polls</li>
+                            <li>😂 Meme Contest (Best Clip)</li>
+                        </ul>
+                    </div>
+                    <div class="absolute left-8 md:left-1/2 w-4 h-4 bg-beast-pink rounded-full transform -translate-x-1/2 shadow-[0_0_15px_#FF00AA] z-10"></div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="relative md:flex justify-between items-center w-full gsap-roadmap-item group">
+                    <div class="pl-20 md:pl-0 md:w-5/12 md:text-right md:pr-12">
+                        <h3 class="font-display text-2xl text-white mb-1">PHASE 3</h3>
+                        <h4 class="font-bold text-white text-lg mb-2">The Aftermath</h4>
+                        <ul class="text-gray-400 text-sm space-y-1 inline-block text-left md:text-right">
+                            <li>🏆 Winner Prediction Results</li>
+                            <li>👕 Simple Merch Drop (Maybe)</li>
+                            <li>🚀 Ride the Hype to Valhalla</li>
+                        </ul>
+                    </div>
+                    <div class="absolute left-8 md:left-1/2 w-4 h-4 bg-white rounded-full transform -translate-x-1/2 shadow-[0_0_15px_white] z-10"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trailer/Media Section -->
+    <section class="py-20 bg-black/80">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <h2 class="font-display text-3xl mb-8 text-white">THE <span class="text-outline-white">TRAILER</span></h2>
+            <div class="glass-panel p-2 rounded-2xl border border-white/20 shadow-[0_0_50px_rgba(0,240,255,0.1)]">
+                <div class="relative w-full pb-[56.25%] bg-gray-900 rounded-xl overflow-hidden group">
+                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/60 pointer-events-none group-hover:bg-black/40 transition-colors">
+                        <div class="text-center">
+                            <i class="fas fa-play-circle text-6xl text-beast-pink mb-4 opacity-80 animate-pulse"></i>
+                            <h3 class="font-display text-xl text-white">CLICK TO PLAY</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community / Footer -->
+    <footer class="relative bg-[#020202] border-t border-white/10 pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col items-center">
+            
+            <h2 class="font-display text-4xl md:text-6xl text-center mb-10 text-white">JOIN THE <span class="text-beast-blue">MOVEMENT</span></h2>
+            
+            <div class="flex flex-wrap justify-center gap-6 mb-16">
+                <a href="https://t.me/BeastGamesPortal" target="_blank" class="w-16 h-16 rounded-full bg-[#229ED9] text-white flex items-center justify-center text-3xl hover:scale-110 transition-transform shadow-[0_0_20px_rgba(34,158,217,0.4)]">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+                <a href="https://x.com/MrBeast" target="_blank" class="w-16 h-16 rounded-full bg-white text-black flex items-center justify-center text-3xl hover:scale-110 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.4)]">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="w-16 h-16 rounded-full bg-beast-pink text-white flex items-center justify-center text-2xl hover:scale-110 transition-transform shadow-[0_0_20px_rgba(255,0,170,0.4)]">
+                    <i class="fas fa-chart-bar"></i>
+                </a>
+            </div>
+
+            <div class="w-full h-px bg-white/10 mb-8"></div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center w-full text-gray-500 text-sm">
+                <p>&copy; 2025 BeastGames Crypto. Fan made. Not affiliated with MrBeast.</p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-beast-blue">Privacy</a>
+                    <a href="#" class="hover:text-beast-blue">Terms</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Scripts -->
+    <script>
+        // 1. Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // 2. Countdown Timer (Target: Jan 7, 2026)
+        // Note: Assuming upcoming Jan 7th. If user meant 2025 (past), this needs adjustment.
+        const targetDate = new Date("January 7, 2026 00:00:00").getTime();
+
+        setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                document.getElementById("countdown").innerHTML = "<div class='col-span-4 text-4xl font-display text-beast-blue text-center'>SEASON 2 IS LIVE</div>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? '0' + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+        }, 1000);
+
+        // 3. Copy To Clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const feedback = document.getElementById('copy-feedback');
+                feedback.classList.remove('translate-y-full');
+                setTimeout(() => {
+                    feedback.classList.add('translate-y-full');
+                }, 2000);
+            });
+        }
+
+        // 4. GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Reveal Left
+        gsap.utils.toArray('.gsap-reveal-left').forEach(element => {
+            gsap.from(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                },
+                x: -50,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // Reveal Right
+        gsap.utils.toArray('.gsap-reveal-right').forEach(element => {
+            gsap.from(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                },
+                x: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // Fade Up
+        gsap.utils.toArray('.gsap-fade-up').forEach(element => {
+            gsap.from(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 50,
+                opacity: 0,
+                duration: 0.8
+            });
+        });
+
+        // Stagger Cards
+        gsap.from(".gsap-stagger-card", {
+            scrollTrigger: {
+                trigger: "#latest",
+                start: "top 95%" // Triggers almost immediately when section enters
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.6,
+            stagger: 0.15,
+            ease: "power2.out"
+        });
+
+        // Roadmap Items
+        gsap.utils.toArray('.gsap-roadmap-item').forEach(element => {
+            gsap.from(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 85%"
+                },
+                opacity: 0,
+                scale: 0.9,
+                duration: 0.6
+            });
+        });
+
+        // Navbar Background Change on Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                // nav.classList.add('bg-black/90', 'backdrop-blur-md');
+                // The inner div handles blur, we just ensure it's visible
+            }
+        });
+
+        // 5. Interactive Canvas Background (Constellation Effect)
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.3; // Slower for subtler effect
+                this.vy = (Math.random() - 0.5) * 0.3;
+                this.size = Math.random() * 2;
+                this.color = Math.random() > 0.5 ? '#00F0FF' : '#FF00AA';
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            for (let i = 0; i < 70; i++) { 
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, width, height);
+            
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                // Draw connections
+                for (let j = i; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance / 100})`;
+                        ctx.lineWidth = 0.15;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+    </script>
 </body>
 </html>
