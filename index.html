@@ -103,22 +103,30 @@
             100% { clip: rect(20px, 9999px, 40px, 0); }
         }
 
-        /* Glassmorphism */
+        /* Glassmorphism - For General UI */
         .glass-panel {
-            background: rgba(20, 20, 25, 0.6);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            background: rgba(25, 30, 45, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 240, 255, 0.05);
         }
 
+        /* SOLID SOCIAL CARD - HIGH CONTRAST & VISIBILITY */
         .social-card {
-            transition: all 0.3s ease;
+            background-color: #1a1a1a; /* Solid charcoal background */
+            border: 1px solid #333333;
+            border-radius: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 20; 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
         }
         .social-card:hover {
+            background-color: #222222;
             border-color: #00F0FF;
             transform: translateY(-5px);
-            background: rgba(30, 30, 40, 0.8);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 240, 255, 0.15);
         }
         
         /* Custom Scrollbar */
@@ -299,7 +307,8 @@
 
             <div class="grid md:grid-cols-2 gap-6">
                 <!-- Tweet 1 -->
-                <a href="https://x.com/MrBeast/status/1992026128949858603" target="_blank" class="social-card glass-panel p-6 rounded-xl flex gap-4 cursor-pointer group gsap-stagger-card">
+                <!-- NOTE: 'opacity-0 translate-y-8' classes are critical for the animation to start hidden and fade in -->
+                <a href="https://x.com/MrBeast/status/1992026128949858603" target="_blank" class="social-card p-6 flex gap-4 cursor-pointer group gsap-stagger-card opacity-0 translate-y-8">
                     <div class="flex-shrink-0">
                         <div class="w-12 h-12 rounded-full border-2 border-beast-blue bg-black flex items-center justify-center">
                             <i class="fas fa-user-astronaut text-beast-blue text-xl"></i>
@@ -311,13 +320,13 @@
                             <i class="fas fa-check-circle text-blue-400 text-xs"></i>
                             <span class="text-gray-500 text-sm">@MrBeast</span>
                         </div>
-                        <p class="text-gray-300 text-sm mb-3">Beast Games Season 2 is going to shatter every record. We went bigger, harder, and crazier. Jan 7th. 🚀</p>
+                        <p class="text-white font-medium text-sm mb-3">Beast Games Season 2 is going to shatter every record. We went bigger, harder, and crazier. Jan 7th. 🚀</p>
                         <span class="text-beast-blue text-xs font-bold group-hover:underline">View on X &rarr;</span>
                     </div>
                 </a>
 
                 <!-- Tweet 2 -->
-                <a href="https://x.com/MrBeast/status/1991895979914899573" target="_blank" class="social-card glass-panel p-6 rounded-xl flex gap-4 cursor-pointer group gsap-stagger-card">
+                <a href="https://x.com/MrBeast/status/1991895979914899573" target="_blank" class="social-card p-6 flex gap-4 cursor-pointer group gsap-stagger-card opacity-0 translate-y-8">
                     <div class="flex-shrink-0">
                          <div class="w-12 h-12 rounded-full border-2 border-beast-pink bg-black flex items-center justify-center">
                             <i class="fas fa-video text-beast-pink text-xl"></i>
@@ -329,13 +338,13 @@
                             <i class="fas fa-check-circle text-blue-400 text-xs"></i>
                             <span class="text-gray-500 text-sm">@MrBeast</span>
                         </div>
-                        <p class="text-gray-300 text-sm mb-3">Just finished editing episode 1... you guys have no idea what's coming. 🎬🤯</p>
+                        <p class="text-white font-medium text-sm mb-3">Just finished editing episode 1... you guys have no idea what's coming. 🎬🤯</p>
                         <span class="text-beast-pink text-xs font-bold group-hover:underline">View on X &rarr;</span>
                     </div>
                 </a>
 
                 <!-- Tweet 3 -->
-                <a href="https://x.com/GWR/status/1991559990600175685" target="_blank" class="social-card glass-panel p-6 rounded-xl flex gap-4 cursor-pointer group gsap-stagger-card">
+                <a href="https://x.com/GWR/status/1991559990600175685" target="_blank" class="social-card p-6 flex gap-4 cursor-pointer group gsap-stagger-card opacity-0 translate-y-8">
                     <div class="flex-shrink-0">
                         <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-black font-bold border-2 border-yellow-400">
                             GWR
@@ -347,13 +356,13 @@
                             <i class="fas fa-check-circle text-blue-400 text-xs"></i>
                             <span class="text-gray-500 text-sm">@GWR</span>
                         </div>
-                        <p class="text-gray-300 text-sm mb-3">New Record Verified: Largest Reality Competition Prize Pool ever? We're watching closely... 👀🏆</p>
+                        <p class="text-white font-medium text-sm mb-3">New Record Verified: Largest Reality Competition Prize Pool ever? We're watching closely... 👀🏆</p>
                         <span class="text-yellow-400 text-xs font-bold group-hover:underline">View on X &rarr;</span>
                     </div>
                 </a>
 
                  <!-- Tweet 4 -->
-                 <a href="https://x.com/MrBeast/status/1991551686272512139" target="_blank" class="social-card glass-panel p-6 rounded-xl flex gap-4 cursor-pointer group gsap-stagger-card">
+                 <a href="https://x.com/MrBeast/status/1991551686272512139" target="_blank" class="social-card p-6 flex gap-4 cursor-pointer group gsap-stagger-card opacity-0 translate-y-8">
                     <div class="flex-shrink-0">
                         <div class="w-12 h-12 rounded-full border-2 border-white bg-black flex items-center justify-center">
                             <i class="fas fa-fire text-white text-xl"></i>
@@ -365,7 +374,7 @@
                             <i class="fas fa-check-circle text-blue-400 text-xs"></i>
                             <span class="text-gray-500 text-sm">@MrBeast</span>
                         </div>
-                        <p class="text-gray-300 text-sm mb-3">Who's ready? Drop a 🔥 if you're watching day 1.</p>
+                        <p class="text-white font-medium text-sm mb-3">Who's ready? Drop a 🔥 if you're watching day 1.</p>
                         <span class="text-white text-xs font-bold group-hover:underline">View on X &rarr;</span>
                     </div>
                 </a>
@@ -436,14 +445,14 @@
             <h2 class="font-display text-3xl mb-8 text-white">THE <span class="text-outline-white">TRAILER</span></h2>
             <div class="glass-panel p-2 rounded-2xl border border-white/20 shadow-[0_0_50px_rgba(0,240,255,0.1)]">
                 <div class="relative w-full pb-[56.25%] bg-gray-900 rounded-xl overflow-hidden group">
-                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <!-- UPDATED: Replaced iframe with video tag -->
+                    <video class="absolute top-0 left-0 w-full h-full object-cover" controls autoplay muted loop playsinline>
+                        <source src="trailer.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                     
-                    <div class="absolute inset-0 flex items-center justify-center bg-black/60 pointer-events-none group-hover:bg-black/40 transition-colors">
-                        <div class="text-center">
-                            <i class="fas fa-play-circle text-6xl text-beast-pink mb-4 opacity-80 animate-pulse"></i>
-                            <h3 class="font-display text-xl text-white">CLICK TO PLAY</h3>
-                        </div>
-                    </div>
+                    <!-- Removed overlay so controls are accessible, but kept styles for structure -->
+                    <div class="absolute inset-0 pointer-events-none border border-white/10 rounded-xl"></div>
                 </div>
             </div>
         </div>
@@ -481,205 +490,235 @@
 
     <!-- Scripts -->
     <script>
-        // 1. Mobile Menu Toggle
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Mobile Menu Toggle
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
 
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
+            if (btn && menu) {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent clicks from bubbling
+                    menu.classList.toggle('hidden');
+                });
 
-        // 2. Countdown Timer (Target: Jan 7, 2026)
-        // Note: Assuming upcoming Jan 7th. If user meant 2025 (past), this needs adjustment.
-        const targetDate = new Date("January 7, 2026 00:00:00").getTime();
+                // Close menu when a link is clicked
+                const mobileLinks = menu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        menu.classList.add('hidden');
+                    });
+                });
 
-        setInterval(() => {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-
-            if (distance < 0) {
-                document.getElementById("countdown").innerHTML = "<div class='col-span-4 text-4xl font-display text-beast-blue text-center'>SEASON 2 IS LIVE</div>";
-                return;
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!menu.contains(e.target) && !btn.contains(e.target) && !menu.classList.contains('hidden')) {
+                        menu.classList.add('hidden');
+                    }
+                });
             }
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            // 2. Countdown Timer (Target: Jan 7, 2026)
+            // Note: Assuming upcoming Jan 7th. If user meant 2025 (past), this needs adjustment.
+            const targetDate = new Date("January 7, 2026 00:00:00").getTime();
 
-            document.getElementById("days").innerText = days < 10 ? '0' + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
-        }, 1000);
+            setInterval(() => {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
 
-        // 3. Copy To Clipboard
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                const feedback = document.getElementById('copy-feedback');
-                feedback.classList.remove('translate-y-full');
-                setTimeout(() => {
-                    feedback.classList.add('translate-y-full');
-                }, 2000);
+                if (distance < 0) {
+                    const countdownEl = document.getElementById("countdown");
+                    if(countdownEl) countdownEl.innerHTML = "<div class='col-span-4 text-4xl font-display text-beast-blue text-center'>SEASON 2 IS LIVE</div>";
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                const daysEl = document.getElementById("days");
+                if(daysEl) daysEl.innerText = days < 10 ? '0' + days : days;
+                
+                const hoursEl = document.getElementById("hours");
+                if(hoursEl) hoursEl.innerText = hours < 10 ? '0' + hours : hours;
+                
+                const minEl = document.getElementById("minutes");
+                if(minEl) minEl.innerText = minutes < 10 ? '0' + minutes : minutes;
+                
+                const secEl = document.getElementById("seconds");
+                if(secEl) secEl.innerText = seconds < 10 ? '0' + seconds : seconds;
+            }, 1000);
+
+            // 3. Copy To Clipboard
+            window.copyToClipboard = function(text) {
+                navigator.clipboard.writeText(text).then(() => {
+                    const feedback = document.getElementById('copy-feedback');
+                    if (feedback) {
+                        feedback.classList.remove('translate-y-full');
+                        setTimeout(() => {
+                            feedback.classList.add('translate-y-full');
+                        }, 2000);
+                    }
+                });
+            }
+
+            // 4. GSAP Animations
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Reveal Left
+            gsap.utils.toArray('.gsap-reveal-left').forEach(element => {
+                gsap.from(element, {
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    },
+                    x: -50,
+                    opacity: 0,
+                    duration: 1,
+                    ease: "power3.out"
+                });
             });
-        }
 
-        // 4. GSAP Animations
-        gsap.registerPlugin(ScrollTrigger);
+            // Reveal Right
+            gsap.utils.toArray('.gsap-reveal-right').forEach(element => {
+                gsap.from(element, {
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    },
+                    x: 50,
+                    opacity: 0,
+                    duration: 1,
+                    ease: "power3.out"
+                });
+            });
 
-        // Reveal Left
-        gsap.utils.toArray('.gsap-reveal-left').forEach(element => {
-            gsap.from(element, {
+            // Fade Up
+            gsap.utils.toArray('.gsap-fade-up').forEach(element => {
+                gsap.from(element, {
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    },
+                    y: 50,
+                    opacity: 0,
+                    duration: 0.8
+                });
+            });
+
+            // Stagger Cards - ANIMATION FIXED
+            // Using gsap.to ensures we animate from the CSS state (opacity-0) to visible
+            gsap.to(".gsap-stagger-card", {
                 scrollTrigger: {
-                    trigger: element,
-                    start: "top 80%",
-                    toggleActions: "play none none reverse"
+                    trigger: "#latest",
+                    start: "top 80%" // Trigger when top of section hits 80% of viewport height
                 },
-                x: -50,
-                opacity: 0,
-                duration: 1,
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                stagger: 0.2,
                 ease: "power3.out"
             });
-        });
 
-        // Reveal Right
-        gsap.utils.toArray('.gsap-reveal-right').forEach(element => {
-            gsap.from(element, {
-                scrollTrigger: {
-                    trigger: element,
-                    start: "top 80%",
-                    toggleActions: "play none none reverse"
-                },
-                x: 50,
-                opacity: 0,
-                duration: 1,
-                ease: "power3.out"
+            // Roadmap Items
+            gsap.utils.toArray('.gsap-roadmap-item').forEach(element => {
+                gsap.from(element, {
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 85%"
+                    },
+                    opacity: 0,
+                    scale: 0.9,
+                    duration: 0.6
+                });
             });
-        });
 
-        // Fade Up
-        gsap.utils.toArray('.gsap-fade-up').forEach(element => {
-            gsap.from(element, {
-                scrollTrigger: {
-                    trigger: element,
-                    start: "top 85%",
-                    toggleActions: "play none none reverse"
-                },
-                y: 50,
-                opacity: 0,
-                duration: 0.8
+            // Navbar Background Change on Scroll
+            window.addEventListener('scroll', () => {
+                const nav = document.getElementById('navbar');
+                // Optional logic for nav background if needed
             });
-        });
 
-        // Stagger Cards
-        gsap.from(".gsap-stagger-card", {
-            scrollTrigger: {
-                trigger: "#latest",
-                start: "top 95%" // Triggers almost immediately when section enters
-            },
-            y: 50,
-            opacity: 0,
-            duration: 0.6,
-            stagger: 0.15,
-            ease: "power2.out"
-        });
+            // 5. Interactive Canvas Background (Constellation Effect)
+            const canvas = document.getElementById('bg-canvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let width, height;
+                let particles = [];
 
-        // Roadmap Items
-        gsap.utils.toArray('.gsap-roadmap-item').forEach(element => {
-            gsap.from(element, {
-                scrollTrigger: {
-                    trigger: element,
-                    start: "top 85%"
-                },
-                opacity: 0,
-                scale: 0.9,
-                duration: 0.6
-            });
-        });
+                function resize() {
+                    width = canvas.width = window.innerWidth;
+                    height = canvas.height = window.innerHeight;
+                }
 
-        // Navbar Background Change on Scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                // nav.classList.add('bg-black/90', 'backdrop-blur-md');
-                // The inner div handles blur, we just ensure it's visible
-            }
-        });
+                window.addEventListener('resize', resize);
+                resize();
 
-        // 5. Interactive Canvas Background (Constellation Effect)
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        let particles = [];
+                class Particle {
+                    constructor() {
+                        this.x = Math.random() * width;
+                        this.y = Math.random() * height;
+                        this.vx = (Math.random() - 0.5) * 0.3; // Slower for subtler effect
+                        this.vy = (Math.random() - 0.5) * 0.3;
+                        this.size = Math.random() * 2;
+                        this.color = Math.random() > 0.5 ? '#00F0FF' : '#FF00AA';
+                    }
 
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
+                    update() {
+                        this.x += this.vx;
+                        this.y += this.vy;
 
-        window.addEventListener('resize', resize);
-        resize();
+                        if (this.x < 0 || this.x > width) this.vx *= -1;
+                        if (this.y < 0 || this.y > height) this.vy *= -1;
+                    }
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 0.3; // Slower for subtler effect
-                this.vy = (Math.random() - 0.5) * 0.3;
-                this.size = Math.random() * 2;
-                this.color = Math.random() > 0.5 ? '#00F0FF' : '#FF00AA';
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                if (this.x < 0 || this.x > width) this.vx *= -1;
-                if (this.y < 0 || this.y > height) this.vy *= -1;
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
-                ctx.fill();
-            }
-        }
-
-        function initParticles() {
-            for (let i = 0; i < 70; i++) { 
-                particles.push(new Particle());
-            }
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, width, height);
-            
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-
-                // Draw connections
-                for (let j = i; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < 100) {
+                    draw() {
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance / 100})`;
-                        ctx.lineWidth = 0.15;
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
+                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                        ctx.fillStyle = this.color;
+                        ctx.fill();
                     }
                 }
-            }
-            requestAnimationFrame(animateParticles);
-        }
 
-        initParticles();
-        animateParticles();
+                function initParticles() {
+                    for (let i = 0; i < 70; i++) { 
+                        particles.push(new Particle());
+                    }
+                }
+
+                function animateParticles() {
+                    ctx.clearRect(0, 0, width, height);
+                    
+                    for (let i = 0; i < particles.length; i++) {
+                        particles[i].update();
+                        particles[i].draw();
+
+                        // Draw connections
+                        for (let j = i; j < particles.length; j++) {
+                            const dx = particles[i].x - particles[j].x;
+                            const dy = particles[i].y - particles[j].y;
+                            const distance = Math.sqrt(dx * dx + dy * dy);
+
+                            if (distance < 100) {
+                                ctx.beginPath();
+                                ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance / 100})`;
+                                ctx.lineWidth = 0.15;
+                                ctx.moveTo(particles[i].x, particles[i].y);
+                                ctx.lineTo(particles[j].x, particles[j].y);
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                    requestAnimationFrame(animateParticles);
+                }
+
+                initParticles();
+                animateParticles();
+            }
+        });
     </script>
 </body>
 </html>
